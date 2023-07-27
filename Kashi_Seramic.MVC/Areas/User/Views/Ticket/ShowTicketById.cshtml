@@ -1,0 +1,150 @@
+﻿@using Pr_Signal_ir.MVC.Models.Ticket;
+
+@model TicketVM
+@{
+    ViewBag.title = Model.Title;
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین ,بیوتی ,,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین ";
+    ViewBag.description = "-با میدیریت  من  ام البنبن  هستم  و برند  بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!--app-content open-->
+<div class="col-md-12">
+    <div class="row row-sm">
+        <div class="card">
+            <div class="main-content-app pt-0">
+                <div class="main-content-body main-content-body-chat h-100">
+                    <div class="main-chat-header pt-3 d-block d-sm-flex" dir="rtl">
+
+                        <div class="main-chat-msg-name mt-2" dir="rtl">
+                            <h6 class="text-end">@Model.Title</h6>
+
+                        </div>
+
+                    </div>
+                    <!-- main-chat-header -->
+                    <div class="main-chat-body flex-2" id="ChatBody">
+                        <div class="content-inner">
+                            <label class="main-chat-time"><span>@(Model.LastModifiedDate?.ConvertDateToPersion())</span></label>
+                            <div class="media flex-row-reverse chat-right">
+                                <div class="main-img-user online"><img alt="avatar" src="/assets/images/users/21.jpg"></div>
+                                <div class="media-body">
+                                    <div class="main-msg-wrapper">
+                                        @Html.Raw(Model.Text)
+                                    </div>
+
+                                    <div>
+                                        <span>@Model.LastModifiedDate?.ToShortTimeString()</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            @foreach (var item in Model.TicketToReply)
+                            {
+
+                                if (item.Status != "Admin")
+                                {
+                                    <div class="media flex-row-reverse chat-right">
+                                        <div class="main-img-user online"><img alt="avatar" src="/assets/images/users/21.jpg"></div>
+                                        <div class="media-body">
+                                            <div class="main-msg-wrapper">
+                                                @Html.Raw(item.Text)
+                                            </div>
+
+                                            <div>
+                                                <span>@item.LastModifiedDate?.ToShortTimeString()</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="media chat-left">
+                                        <div class="main-img-user online"><img alt="avatar" src="/assets/images/users/1.jpg"></div>
+                                        <div class="media-body">
+                                            <div class="main-msg-wrapper">
+                                                @Html.Raw(item.Text)
+                                            </div>
+                                            <div>
+                                                <span>@item.LastModifiedDate?.ToShortTimeString()</span> <a href=""><i class="icon ion-android-more-horizontal"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+
+
+
+                        </div>
+                    </div> <form action="/User/Ticket/InsertMessage" method="post">
+                        <div class="main-chat-footer">
+
+                            <input class="form-control text-end" name="Text" required="" placeholder="متن را اینچا وارد کنید...." type="text">
+                            <input type="text" name="Code" hidden value="@Model.Id" />
+                            <a class="nav-link" data-bs-toggle="tooltip" href="" title="Attach a File"><i class="fe fe-paperclip"></i></a>
+                            <button type="submit" class="btn btn-icon  btn-primary brround"><i class="fa fa-paper-plane-o"></i></button>
+
+
+                            <nav class="nav">
+                            </nav>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<!-- BOOTSTRAP JS -->
+<script src="/assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- INPUT MASK JS-->
+<script src="/assets/plugins/input-mask/jquery.mask.min.js"></script>
+
+<!-- SIDEBAR JS -->
+<script src="/assets/plugins/sidebar/sidebar.js"></script>
+
+<!-- SIDE-MENU JS -->
+<script src="/assets/plugins/sidemenu/sidemenu.js"></script>
+
+<!-- TypeHead js -->
+<script src="/assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
+<script src="/assets/js/typehead.js"></script>
+
+<!-- GALLERY JS -->
+<script src="/assets/plugins/gallery/picturefill.js"></script>
+<script src="/assets/plugins/gallery/lightgallery.js"></script>
+<script src="/assets/plugins/gallery/lightgallery-1.js"></script>
+<script src="/assets/plugins/gallery/lg-pager.js"></script>
+<script src="/assets/plugins/gallery/lg-autoplay.js"></script>
+<script src="/assets/plugins/gallery/lg-fullscreen.js"></script>
+<script src="/assets/plugins/gallery/lg-zoom.js"></script>
+<script src="/assets/plugins/gallery/lg-hash.js"></script>
+<script src="/assets/plugins/gallery/lg-share.js"></script>
+
+<!-- Perfect SCROLLBAR JS-->
+<script src="/assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+<script src="/assets/plugins/p-scroll/pscroll.js"></script>
+<script src="/assets/plugins/p-scroll/pscroll-1.js"></script>
+
+<!-- Internal Chat js-->
+<script src="/assets/js/chat.js"></script>
+
+<!-- Color Theme js -->
+<script src="/assets/js/themeColors.js"></script>
+
+<!-- Sticky js -->
+<script src="/assets/js/sticky.js"></script>
+
+<!-- CUSTOM JS -->
+<script src="/assets/js/custom.js"></script>

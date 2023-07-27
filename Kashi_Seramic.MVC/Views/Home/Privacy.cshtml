@@ -1,0 +1,32 @@
+﻿@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.Menu;
+@model CreateMenuVM
+@{
+
+}
+
+@using (Html.BeginForm("Privacy", "Home", FormMethod.Post))
+{
+
+
+    @Html.ValidationSummary(false,"",new {@class="text-danger"})
+    @Html.DisplayNameFor(a=>a.RoleName)
+
+    @Html.EditorFor(a=>a.RoleName)
+
+
+    @Html.DisplayNameFor(a=>a.Title)
+
+    @Html.EditorFor(a=>a.Title)
+
+
+    @Html.DisplayNameFor(a=>a.Href)
+
+    @Html.EditorFor(a=>a.Href)
+
+    <input type="submit" value="submit">
+}
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

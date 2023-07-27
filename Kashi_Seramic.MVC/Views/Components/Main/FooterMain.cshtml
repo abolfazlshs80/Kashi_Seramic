@@ -1,0 +1,142 @@
+﻿@model FooterVM
+
+
+
+<footer class="footer-wrap style2 pt-100">
+    <img src="/Kashi_Seramic_Theme/assets/img/footer-map.png" alt="IMage" class="footer-shape-one">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row pb-75">
+                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 pe-xl-5">
+                    <div class="footer-widget">
+                        <a href="/" class="footer-logo">
+                            <img src="@Model.Setting.LogoPath.SetForLogoUrl()" alt="@Model.Setting.Title" alt="@Model.Setting.Desc">
+                        </a>
+                        <p class="comp-desc">
+                 @Model.Setting.FotterDesc
+                        </p>
+                        <h6>زبان</h6>
+                        <div class="select-lang">
+                            <div class="navbar-option-item navbar-language dropdown language-option">
+                                <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    <span class="lang-name"></span>
+                                </button>
+                                <div class="dropdown-menu language-dropdown-menu">
+                                    <a class="dropdown-item" href="#">
+                                        <img src="/Kashi_Seramic_Theme/assets/img/uk.png" alt="flag">
+                                        انگلیسی
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <img src="/Kashi_Seramic_Theme/assets/img/china.png" alt="flag">
+                                        فارسی
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <img src="/Kashi_Seramic_Theme/assets/img/uae.png" alt="flag">
+                                        العربيّة
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-6 col-md-6 col-sm-6">
+                    <div class="footer-widget">
+                        <h3 class="footer-widget-title">دسته بندی ها</h3>
+                        <ul class="footer-menu list-style">
+                            @foreach (var category in Model.Categories.Take(6))
+                            {
+                                <li>
+                                    <a href="/Category/@category.Id/@category.Name" target="_blank">
+                                        <i class="ri-arrow-left-s-line"></i>
+                                        @category.Name
+                                    </a>
+                                </li>
+                            }
+                       
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 ps-xl-5">
+                    <div class="footer-widget">
+                        <h3 class="footer-widget-title">لینکهای سریع</h3>
+                        <ul class="footer-menu list-style">
+                            <li>
+                                <a href="/AboutUs" target="_blank">
+                                    <i class="ri-arrow-left-s-line"></i>
+                                    درباره ما
+                                </a>
+                            </li>
+                            <li>
+                                <a href="Product" target="_blank">
+                                    <i class="ri-arrow-left-s-line"></i>
+                                 محصولات
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/Blog" target="_blank">
+                                    <i class="ri-arrow-left-s-line"></i>
+                                    آخرین مقاله ها
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/ContactUs" target="_blank">
+                                    <i class="ri-arrow-left-s-line"></i>
+                                    تماس با ما
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/faq" target="_blank">
+                                    <i class="ri-arrow-left-s-line"></i>
+                             سوالات متداول
+                                </a> 
+                            </li>
+                            <li>
+                                <a href="terms-of-service.html" target="_blank">
+                                    <i class="ri-arrow-left-s-line"></i>
+                                    قوانین و ضوابط
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                    <div class="footer-widget">
+                        <div class="comp-map">
+                            
+                            @Html.Raw( Model.Setting.MapCode)
+                   </div> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="footer-bottom">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="copyright-text">
+                        <i class="ri-copyright-line"></i><span>فلا</span>. تمام حقوق قالب محفوظ است . طراحی و
+                        توسعه <a href="https://www.rtl-theme.com/author/barat" target="_blank"> @Model.Setting.DeveloperName</a>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="social-profile list-style style1">
+                    
+                        <li>
+                                <a target="_blank" href="@Model.Setting.TelegramChannle">
+                                <i class="ri-telegram-fill"></i>
+                            </a>
+                        </li>
+                        <li>
+                                <a target="_blank" href="@Model.Setting.InstagramUserName">
+                                <i class="ri-instagram-line"></i>
+                            </a>
+                        </li>
+                      
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,39 @@
+﻿@using Pr_Signal_ir.MVC.Models.FilterToProduct
+
+@model ProductVM
+<div class="sidebar-widget style4 py-2">
+    <h4>فیلتر ها</h4>
+    <div class="table-responsive">
+        <table class="table table-borderless text-nowrap mb-0" dir="rtl">
+            <tbody class="text-end">
+            <tr>
+                
+                <td class="text-start"><span class="fw-bold text-green">قیمت محصول</span></td>
+                <td class="text-end">@Model.Price.ConvertToInt() تومان</td>
+               
+            </tr>
+            <tr>
+                
+                <td class="text-start"><span class="fw-bold text-green">تعداد موجودی  محصول در انبار</span></td>
+                <td class="text-end">@(Model.Qountity.Equals(0)?"موجود ندارد":Model.Qountity) </td>
+            </tr>
+            @foreach (var item in Model.FilterToProduct?? new List<FilterToProductVM>())
+            {
+                <tr>
+                    <td class="text-start"><span class="fw-bold text-green">@item.FilterValueProduct?.FilterProduct?.Title</span></td>
+                    <td class="text-end">@item.FilterValueProduct?.Value</td>
+
+                                         
+                                              
+                             
+                </tr>
+            }
+                               
+                  
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

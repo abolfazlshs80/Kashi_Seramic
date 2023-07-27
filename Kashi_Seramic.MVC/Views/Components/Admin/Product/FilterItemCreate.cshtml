@@ -1,0 +1,15 @@
+﻿@using Pr_Signal_ir.MVC.Models.Category;
+@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.CommentToBlog;
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Pr_Signal_ir.MVC.Models.FilterProduct.FilterProductVM
+
+
+<div class="col-xl-3 mb-3">
+    <label for="validationDefault04">دسته بندی</label>
+    <select disable name="Model.FilterId" class="form-select form-control" id="validationDefault04"
+            required>
+
+            <option value="@Model.Id">@Model.Title</option>
+     
+    </select>
+</div>

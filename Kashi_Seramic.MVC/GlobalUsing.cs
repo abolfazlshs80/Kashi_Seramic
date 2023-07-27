@@ -1,0 +1,12 @@
+﻿global using AutoMapper;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Mvc;
+global using Kashi_Seramic.MVC.Models.Common;
+global using Pr_Signal_ir.MVC.Contracts;
+global using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models;
+global using Pr_Signal_ir.MVC.Services.Base;
+global using System.Data;
+global using System.Reflection.Metadata;
+global using System.Security.Claims;
+global using MediatR;

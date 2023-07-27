@@ -1,0 +1,46 @@
+﻿@using Pr_Signal_ir.MVC.Models.Roles;
+@model IEnumerable<RoleVM>
+@{
+
+    ViewBag.title = "لیست مقام ها";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+}
+
+<div class="col-md-12">
+    <a href="/Admin/ManageRole/AddRole" class="btn btn-primary">مقام جدید</a>
+    @if (!Model.Any())
+    {
+        <h1>مقامی یافت نشد</h1>
+    }
+    else
+    {
+
+        foreach (var item in Model)
+        {
+            <div class="card mt-2">
+                <div class="card-body">
+                 نام مقام : <b>@item.RoleName</b>
+                </div>
+                <div class="card-footer">
+
+                    <a href="/Admin/ManageRole/EditRole/@item.RoleId"
+               class="btn btn-primary">ویرایش</a>
+
+                    <a href="/Admin/ManageRole/DeleteRole/@item.RoleId" type="submit" class="btn btn-danger">حذف</a>
+
+                </div>
+            </div>
+        }
+
+
+    }
+</div>
+
+

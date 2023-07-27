@@ -1,0 +1,33 @@
+﻿@using Pr_Signal_ir.MVC.Models.TagToBlog
+@using Pr_Signal_ir.MVC.Models.TagToProduct
+@model Pr_Signal_ir.MVC.Models.Tag.TagVM
+
+
+<div class="sidebar-widget tags">
+    <h4>برچسب های محبوب </h4>
+    <div class="tag-list">
+        <ul class="list-style">
+            @if (ViewBag.type == "Blog")
+            {
+                @foreach (var tag in Model.TagToBlog ??new List<TagToBlogVM>())
+                {
+                    <li><a href="/Tag/@tag.TagId/@tag.Tag.Name.SetForBlogUrl()" title="@tag.Tag.Name"> @tag.Tag.Name</a></li>
+
+                }
+
+            }
+            else
+            {
+                @foreach (var tag in Model.TagToProduct ?? new List<TagToProductVM>())
+                {
+                    <li><a href="/Tag/@tag.TagId/@tag.Tag.Name.SetForBlogUrl()" title="@tag.Tag.Name"> @tag.Tag.Name</a></li>
+
+                }
+            }
+
+
+        </ul>
+    </div>
+</div>
+
+

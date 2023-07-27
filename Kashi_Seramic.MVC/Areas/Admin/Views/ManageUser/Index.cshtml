@@ -1,0 +1,89 @@
+﻿@using Pr_Signal_ir.MVC.Models;
+@model IEnumerable<EmployeeVM>
+@{
+    ViewData["Title"] = "Index";
+    ViewBag.title = " لیست کاربران";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+}
+
+<div class="col-md-12">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="/Admin/ManageUser/Search" method="post">
+                    <div class="input-group">
+                        <button type="submit" class="btn input-group-text bg-transparent border-start-0 text-muted">
+                            <i class="fe fe-search" aria-hidden="true"></i>
+                        </button>
+                        <input type="text" class="form-control border-end-0 text-end" name="text" placeholder="جست و جو کنید">
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    @if (!Model.Any())
+    {
+        <h1>کاربری یافت نشد</h1>
+    }
+    else
+    {
+
+        foreach (var item in Model)
+        {
+            <div class="card mt-2">
+                <div class="card-body text-end">
+
+                    <b>@item.Username</b> : نام کاربری
+                </div>
+                <div class="card-body text-end">
+                    <b>@item.Email</b>   :  ایمیل
+                </div>
+                <div class="card-body text-end">
+
+                    <b id="n@(item.Id)">@item.Firstname   @item.Lastname</b>  <label for="n@(item.Id)"> :نام کامل</label>
+                </div>
+                <div class="card-footer text-end">
+                    <form action="/Admin/ManageUser/DeleteUser" method="post">
+                        <input type="text" hidden name="id" value="@(item.Id)">
+                        <a href="/Admin/ManageUser/EditUser?id=@(item.Id)"
+                       class="btn btn-primary m-1">ویرایش کاربر</a>
+                        @*    <a href="/Admin/ManageUser/verifyEmail?id=@(item.Id)"
+                class="btn btn-primary m-1">وضعیت(@(item.ConfirmEmail ? "فعال" : "غیر فعال"))</a>
+                *@
+                        <a href="/Admin/ManageUser/AddUserToRole?id=@item.Id"
+                   class="btn btn-primary m-1 ">اضافه کردن مقام به کاربر</a>
+
+            @*            <a href="/Admin/ManageUser/AddUserToDore?id=@item.Id"
+                   class="btn btn-primary m-1 ">اضافه کردن دوره به کاربر</a>*@
+@*
+                        <a href="/Admin/ManageUser/AddUserToRole?id=@item.Id"
+                   class="btn btn-primary m-1 ">ویرایش کلمه عبور </a>*@
+                        @*
+
+                <a href="/Admin/ManageUser/AddUserToClaim?id=@(Model[i].Id)"
+                class="btn btn-primary m-1">Add to Claim</a>*@
+
+                        @*    <a href="/Admin/ManageUser/RemoveUserFromClaim?id=@(Model[i].Id)"
+                class="btn btn-danger m-1 text-white">Remove From Claim</a>*@
+@*
+                        <a href="/Admin/ManageUser/UpdateSecurityStamp?id=@(item.Id)"
+                   class="btn btn-danger m-1 text-white">بروز رسانی</a>*@
+                        @*
+                <button type="submit" class="btn btn-danger">Delete user</button>*@
+                    </form>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+

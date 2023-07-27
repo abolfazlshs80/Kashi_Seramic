@@ -1,0 +1,221 @@
+﻿@using System.Security.Claims
+
+@{
+    var cacheKey = "myScriptKey";
+    if (!Html.ViewContext.HttpContext.Items.ContainsKey(cacheKey))
+    {
+        string scriptContent = "";
+        <script type="text/javascript">
+            @Html.Raw(scriptContent)
+        </script>
+        Html.ViewContext.HttpContext.Items.Add(cacheKey, true);
+    }
+}
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="@ViewBag.description">
+    <meta name="author" content="@ViewBag.author">
+    <meta name="keywords" content="@ViewBag.keywords">
+
+    <!-- FAVICON -->
+    <meta name="robots" content="noindex,nofollow">
+
+ @*   <link href="/css/bootstrap-datepicker.css" rel="stylesheet" />*@
+    <!--Twitter-->
+    <!-- TITLE -->
+    <title>@ViewBag.title</title>
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="/Images/logo/logo-portrat1.png" />
+
+    <!-- TITLE -->
+    <!-- BOOTSTRAP CSS -->
+    <link id="style" href="/Admin/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- STYLE CSS -->
+    <link href="/Admin/assets/css/style.css" rel="stylesheet" />
+    <link href="/Admin/assets/css/dark-style.css" rel="stylesheet" />
+    <link href="/Admin/assets/css/transparent-style.css" rel="stylesheet">
+    <link href="/Admin/assets/css/skin-modes.css" rel="stylesheet" />
+    <link href="/Admin/css/UserPannel.css" rel="stylesheet" />
+    <link href="/Admin/css/fontsite.css" rel="stylesheet" />
+    <link href="/Admin/css/site.css" rel="stylesheet" />
+    <link href='https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
+
+    <!--- FONT-ICONS CSS -->
+    <link href="/Admin/assets/css/icons.css" rel="stylesheet" />
+    
+    
+    @RenderSection("link", false)
+    @{
+        if (ViewBag.socialmedia == null)
+        {
+            ViewBag.socialmedia = true;
+        }
+        if (ViewBag.notBannerlocation == null)
+        {
+            ViewBag.notBannerlocation = false;
+        }
+        if (ViewBag.notfooter == null)
+        {
+            ViewBag.notfooter = false;
+        }
+        if (ViewBag.notBanner == null)
+        {
+            ViewBag.notBanner = true;
+
+
+
+        }
+        if (ViewBag.notmenu == null)
+        {
+            ViewBag.notmenu = false;
+
+
+
+        }
+
+        if (ViewBag.appcontent == null)
+        {
+            ViewBag.appcontent = false;
+
+
+
+        }
+        if (ViewBag.isindex == null)
+        {
+            ViewBag.isindex = false;
+        }
+        if (ViewBag.path1 == null)
+        {
+            ViewBag.path1 = "";
+            ViewBag.path2 = "";
+        }
+        if (ViewBag.mymodal == null)
+        {
+            ViewBag.mymodal = false;
+
+        }
+        @if (ViewBag.mymodal)
+        {
+
+        }
+
+    }
+    <!-- COLOR SKIN CSS -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="/Admin/assets/colors/color1.css" />
+    @{
+        ViewBag.Id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    }
+    <style>
+        .colorfooter {
+            background-color: #ba0390;
+        }
+    </style>
+</head>
+<body class="" style="font-family:'titr'">
+    <!-- Navigation  -->
+    <!-- PAGE-HEADER -->
+    @*@await Component.InvokeAsync("MenuMainComponents")*@
+    <div class="page-header justify-content-end" style="">
+        <div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page"><a style="" href="">@ViewData["Title"]</a></li>
+                <li class="breadcrumb-item"><a href=""> </a></li>
+
+            </ol>
+        </div>
+        <h1 class="page-title" style="padding-right:20px">تنظیمات</h1>
+
+    </div>
+    <!-- PAGE-HEADER END -->
+    <!-- ROW-1 OPEN -->
+    <!-- Row -->
+    <div class="row  px-3 mb-5" style="font-family:'titr' mb-5">
+        <div class="col-md-10 mt-3">
+            @RenderBody()
+        </div>
+
+
+        @await Component.InvokeAsync("MainMenuAdminComponents")
+    </div>
+       @if (!ViewBag.notfooter)
+        {
+            @*@await Component.InvokeAsync("FooterMainComponents")*@
+        }
+    <!-- /Row -->
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="/Admin/assets/js/jquery.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="/Admin/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="/Admin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- SIDE-MENU JS -->
+    <script src="/Admin/assets/plugins/sidemenu/sidemenu.js"></script>
+
+    <!-- TypeHead js -->
+    <script src="/Admin/assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
+    <script src="/Admin/assets/js/typehead.js"></script>
+
+    <!-- SIDEBAR JS -->
+    <script src="/Admin/assets/plugins/sidebar/sidebar.js"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="/Admin/assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+    <script src="/Admin/assets/plugins/p-scroll/pscroll.js"></script>
+    <script src="/Admin/assets/plugins/p-scroll/pscroll-1.js"></script>
+
+    <!-- Color Theme js -->
+    <script src="/Admin/assets/js/themeColors.js"></script>
+
+    <!-- Sticky js -->
+    <script src="/Admin/assets/js/sticky.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="/Admin/assets/js/custom.js"></script>
+
+
+    @RenderSection("scripts", false)
+
+    <script src="/Admin/signalr/dist/browser/signalr.js"></script>
+    <script>
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl('/notifyhub')
+            .configureLogging(signalR.LogLevel.Information)
+            .build();
+        this.connection.start()
+            .catch(function (err) {
+                return console.error(err.toSting());
+            });
+            </script>
+    <script>
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            var boxes = document.querySelectorAll(".list-group-item");
+
+            boxes.forEach(box => {
+                box.addEventListener("click", (e) => {
+
+                    var btn = (e);
+                    (e.target).className = "current text-white  d-flex align-items-center px-0 py-3 justify-content-end";
+                    console.log(e.target);
+                });
+            });
+
+        });
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+

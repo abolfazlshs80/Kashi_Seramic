@@ -1,0 +1,80 @@
+﻿@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.Order;
+
+@{
+    //ViewBag.title = "لیست دوره های خریداری شده";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین ,بیوتی ,,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین ";
+    ViewBag.description = "-با میدیریت  من  ام البنبن  هستم  و برند  بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model IEnumerable<OrderVM>
+
+
+<div class="col-md-12">
+    <div class="card text-end">
+        <div class="card-header justify-content-end">
+            <h3 class="card-title">فاکتور ها</h3>
+        </div>
+
+        @if (Model.Count() < 1)
+        {
+
+            <div class="alert alert-info" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
+                <strong>دوره موجود نیس</strong>
+            </div>
+
+        }
+
+        else
+        {
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table dir="rtl" class="table table-bordered border text-nowrap mb-0" id="new-edit">
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    عنوان آموزش
+                                </th>
+                                <th>تاریخ آخرین به روز رسانی</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                foreach (var detials in order.orderDetails.DistinctBy(a => a.Product.Id))
+                                {
+                                    <tr>
+
+                                        <td><a href="/BlogVideo/@detials.Product.Id/@detials.Product.Title">@detials.Product.Title</a> </td>
+                                        <td class="slider_id">@detials.Product.LastModifiedDate?.ConvertDateToPersion()</td>
+
+
+
+                                    </tr>
+                                }
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+
+
+<script src="/assets/plugins/accordion/accordion.min.js"></script>
+<script src="/assets/plugins/accordion/accordion.js"></script>

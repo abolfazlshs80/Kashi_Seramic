@@ -1,0 +1,127 @@
+﻿@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models;
+
+@model IEnumerable<ProductVM>
+@{
+
+    ViewBag.title = " دمدیریت بلاگ";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+
+}
+
+
+<div class="col-md-12">
+    <div class="card text-end">
+        <div class="card-header justify-content-end">
+            <h3 class="card-title">مقاله  ها</h3>
+        </div>
+        @if (Model.ToList().Count() < 1)
+        {
+
+            <div class="alert alert-info" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
+                <strong>مقاله ای موجود نیس</strong> .<a href="/Admin/ManageProduct/Create" class="alert-link"> ثبت بلاگ جدید</a> برای ساخت بلاگ لازم است
+            </div>
+
+        }
+        else
+        {
+            <div class="card-body">
+                <a id="table2-new-row-button" href="/Admin/ManageProduct/Create" class="btn btn-primary mb-4">  مقاله جدید</a>
+                <div class="table-responsive">
+                    <table dir="rtl" class="table table-bordered border text-nowrap mb-0" id="new-edit">
+                        <thead>
+                            <tr>
+                                <th>کد</th>
+                                <th>
+                                    عنوان
+                                </th>
+                                <th> تاریخ انتشار </th>
+                                <th>دسته بندی </th>
+                                <th>بازدید </th>
+                                <th name="bstable-actions"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.TitleInBrowser</td>
+                                    <td>@item.DateCreated?.ConvertDateToPersion()</td>
+                                    <td></td>
+                                    <td>@item.Seen</td>
+
+                                    <td name="bstable-actions">
+                                        <div class="btn-list">
+                                            <a id="bEdit" href="/Admin/ManageProduct/Edit/@item.Id" class="btn btn-sm btn-primary">
+                                                <span class="fe fe-edit"> </span>
+                                            </a>
+                                            <a id="bEdit" href="/Admin/ManageProduct/Active/@item.Id" class="btn btn-sm btn-primary">
+                                                @(item.Status?"غیر فعال":"فعال")
+
+                                            </a>
+                                            @*    data-bs-target="#modaldemo5" data-bs-toggle="modal"*@
+                                            <a id="bDel" href="/Admin/ManageProduct/Delete/@item.Id" class="btn  btn-sm btn-danger">
+                                                <span class="fe fe-trash-2"> </span>
+                                            </a>
+                                            <button id="bAcep" type="button" class="btn  btn-sm btn-primary" style="display:none;">
+                                                <span class="fe fe-check-circle"> </span>
+                                            </button>
+                                            <button id="bCanc" type="button" class="btn  btn-sm btn-danger" style="display:none;">
+                                                <span class="fe fe-x-circle"> </span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+<div class="modal fade" id="modaldemo5">
+    <div class="modal-dialog modal-dialog-centered text-center" role="document">
+        <div class="modal-content tx-size-sm">
+            <div class="modal-body text-center p-4 pb-5" id="modalbody">
+                <button aria-label="Close" class="btn-close position-absolute" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <i class="icon icon-close fs-70 text-danger lh-1 my-5 d-inline-block"></i>
+                <h4 class="text-danger">ایا با حذف این دسته بندی موافق هستید؟</h4>
+                <p class="mg-b-20 mg-x-20">اول باید تمامی بلاگ هایی را ک با این دسته بندی ایچاد شدن را تغییر دهید</p>
+
+                <button onclick="Delete(0)" aria-label="Close" type="submit" class="btn btn-danger pd-x-25" data-bs-dismiss="modal">حذف</button>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@*<script src="~/MainTemplate/Scripts/modal.js"></script>*@
+<script>
+
+    function Delete(id) {
+        $.get("/Admin/ManageProduct/Delete/" + id, function (resualt) {
+
+        });
+    }
+</script>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

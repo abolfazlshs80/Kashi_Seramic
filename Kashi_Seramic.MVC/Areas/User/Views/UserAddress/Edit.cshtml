@@ -1,0 +1,168 @@
+﻿@using Kashi_Seramic.MVC.Models.Users.UserAddres;
+
+
+
+@model UpdateUserAddressVM
+
+@{
+    ViewBag.title = " ویرایش دسته جدید";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-md-12" dir="rtl">
+    <div class="card" dir="rtl">
+        <div class="card-header">
+            <h3 class="card-title">ویرایش دسته بندی</h3>
+        </div>
+        <div class="card-body pb-2 ">
+            <form class="needs-validation was-validated" action="/User/UserAddress/Edit" method="post" enctype="multipart/form-data">
+                <div class="row row-sm">
+                  
+                        <div class="col-lg-12">
+                            <div class=" row">
+                                <label class=" col-md-2">عنوان</label>
+                                <input name="Model.Title" value="@Model.Title" class="form-control col-md-10 mb-4 is-invalid state-invalid" type="text" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class=" row">
+                                <label class=" col-md-2">نام</label>
+                            <input name="Model.Name" value="@Model.Name" class="form-control col-md-10 mb-4 is-invalid state-invalid" type="text" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class=" row">
+                                <label class=" col-md-2">نام خوانوادگی</label>
+                            <input name="Model.Family" value="@Model.Family" class="form-control col-md-10 mb-4 is-invalid state-invalid" type="text" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class=" row">
+                                <label class=" col-md-2">استان</label>
+                            <input name="Model.Ostan" value="@Model.Ostan" class="form-control col-md-10 mb-4 is-invalid state-invalid" type="text" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class=" row">
+                                <label class=" col-md-2">شهر</label>
+                            <input name="Model.City" value="@Model.City" class="form-control col-md-10 mb-4 is-invalid state-invalid" type="text" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class=" row">
+                                <label class=" col-md-2">خیابان</label>
+                            <input name="Model.Avenu" value="@Model.Avenu" class="form-control col-md-10 mb-4 is-invalid state-invalid" type="text" required />
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class=" row">
+                                <label class=" col-md-2">آدرس</label>
+
+                            <input type="text" value="@Model.Address" name="Model.Address" class="form-control col-md-10 mb-4 is-invalid state-invalid" required>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class=" row">
+                                <label class=" col-md-2">تلفن</label>
+                            <input name="Model.Phone" value="@Model.Phone" class="form-control col-md-10 mb-4 is-invalid state-invalid" type="text" required />
+                            </div>
+                        </div>
+                    <div class="col-lg-12">
+                        <div class=" row">
+                            <label class=" col-md-2">کد پستی</label>
+                            <input name="Model.CodePostal" value="@Model.CodePostal" class="form-control col-md-10 mb-4 is-invalid state-invalid" type="text" required />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class=" row">
+                            <label class=" col-md-2">به عنوان پیشفرض</label>
+                        </div>    
+                        <input name="Model.ActiveByDefualt" class="" type="checkbox" value="true"  />
+
+                    </div>
+                    <input type="submit" class="btn btn-success col-md-2 mt-3" value="ثبت" />
+                    <input type="hidden" name="Model.Id" value="@Model.Id" />
+                    <a onclick="history.back()" class="btn btn-danger col-md-2 mt-3 mx-2">انصراف</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <!-- INTERNAL SUMMERNOTE Editor JS -->
+    <script src="/Admin/assets/plugins/summernote/summernote1.js"></script>
+    <script src="/Admin/assets/js/summernote.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/jquery.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- SIDEBAR JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/sidebar/sidebar.js"></script>
+
+    <!-- INPUT MASK JS-->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/input-mask/jquery.mask.min.js"></script>
+
+    <!-- SIDE-MENU JS-->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/sidemenu/sidemenu.js"></script>
+
+    <!-- TypeHead js -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/typehead.js"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/p-scroll/pscroll.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/p-scroll/pscroll-1.js"></script>
+
+    <!-- INTERNAL WYSIWYG Editor JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/wysiwyag/jquery.richtext.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/wysiwyag/wysiwyag.js"></script>
+
+    <!-- INTERNAL SUMMERNOTE Editor JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/summernote/summernote1.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/summernote.js"></script>
+
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/jquery.ui.widget.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/jquery.fileupload.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/jquery.iframe-transport.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/jquery.fancy-fileupload.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/fancy-uploader.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fileuploads/js/fileupload.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fileuploads/js/file-upload.js"></script>
+    <!-- INTERNAL FORMEDITOR JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/quill/quill.min.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/form-editor2.js"></script>
+
+    <!-- Froala Editor JS-->
+    <script src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/froala.js"></script>
+
+    <!-- Color Theme js -->
+    <script src="/Kashi_Seramic_Theme/assets/js/themeColors.js"></script>
+
+    <!-- Sticky js -->
+    <script src="/Kashi_Seramic_Theme/assets/js/sticky.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="/Kashi_Seramic_Theme/assets/js/custom.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/select2/select2.full.min.js"></script>
+    <script src="/Kashi_Seramic_Theme/Admin/assets/plugins/fileuploads/js/fileupload.js"></script>
+    <script src="/Kashi_Seramic_Theme/Admin/assets/plugins/fileuploads/js/file-upload.js"></script>
+          }

@@ -1,0 +1,136 @@
+﻿@page "/ManageBlog/Create"
+@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models;
+@model CreateBlogVM
+@{
+}
+
+
+@{
+    ViewBag.title = " ثبت مقاله جدید";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="col-md-12" dir="rtl">
+    <div class="card text-end ">
+        <div class="card-header ">
+            <h3 class="card-title  text-center">ساخت بلاگ جدید</h3>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Create","ManageBlog", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary()
+                @Html.HiddenFor(a=>a.Seen)
+                @Html.HiddenFor(a=>a.Owner)
+                @Html.HiddenFor(a=>a.LinkKey)
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.ShortTitle)
+                    <input name="Model.ShortTitle" class="form-control mb-4" placeholder="عنوان را وارد کنید..." type="text" required />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.ShortTitle)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.TitleBrowser)
+                    <input name="Model.TitleBrowser" class="form-control mb-4" placeholder="عنوان  در مرورگر را وارد کنید..." type="text" required />
+   <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.TitleBrowser)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.LongTitle)
+                    <input name="Model.LongTitle" class="form-control mb-4" placeholder="عنوان را وارد کنید..." type="text" required />
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.LongTitle)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.Tag)
+                    <input name="Model.Tag" class="form-control mb-4" placeholder="تگ را وارد کنید..." type="text" required />
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.Tag)</span>
+                </div>
+                @await Component.InvokeAsync("CategoryItemCreateComponents")
+                @await Component.InvokeAsync("TagItemCreateComponents")
+                <div class="col-lg-4 col-sm-12 mb-4 mb-lg-0">
+                    <label for="fileslider">تصویر برای  اسلایدر صفحه اصلی 272*488</label>
+                    <input type="file" name="Model.FileHeader" id="fileslider" class="dropify" data-bs-height="180" />
+                </div>
+                <div class="col-lg-4 col-sm-12 mb-4 mb-lg-0">
+                    <label for="filebacground">تصویر برای  نمایش مقاله 417*782</label>
+                    <input type="file" name="Model.FileForDetials" id="filebacground" class="dropify" data-bs-height="180" />
+                </div>
+                <textarea name="Model.Text" id="summernote">
+
+                    </textarea>
+                <div class="invalid-feedback">@Html.ValidationMessageFor(m=>m.ShortTitle)</div>
+                <input type="submit" class="btn btn-primary" value="ثبت" />
+            }
+
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="/Admin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/Admin/assets/js/jquery.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="/Admin/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="/Admin/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- SIDEBAR JS -->
+    <script src="/Admin/assets/plugins/sidebar/sidebar.js"></script>
+
+    <!-- INPUT MASK JS-->
+    <script src="/Admin/assets/plugins/input-mask/jquery.mask.min.js"></script>
+
+    <!-- SIDE-MENU JS-->
+    <script src="/Admin/assets/plugins/sidemenu/sidemenu.js"></script>
+
+    <!-- TypeHead js -->
+    <script src="/Admin/assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
+    <script src="/Admin/assets/js/typehead.js"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="/Admin/assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+    <script src="/Admin/assets/plugins/p-scroll/pscroll.js"></script>
+    <script src="/Admin/assets/plugins/p-scroll/pscroll-1.js"></script>
+
+    <!-- INTERNAL WYSIWYG Editor JS -->
+    <script src="/Admin/assets/plugins/wysiwyag/jquery.richtext.js"></script>
+    <script src="/Admin/assets/plugins/wysiwyag/wysiwyag.js"></script>
+
+    <!-- INTERNAL SUMMERNOTE Editor JS -->
+    <script src="/Admin/assets/plugins/summernote/summernote1.js"></script>
+    <script src="/Admin/assets/js/summernote.js"></script>
+
+    <script src="/Admin/assets/plugins/fancyuploder/jquery.ui.widget.js"></script>
+    <script src="/Admin/assets/plugins/fancyuploder/jquery.fileupload.js"></script>
+    <script src="/Admin/assets/plugins/fancyuploder/jquery.iframe-transport.js"></script>
+    <script src="/Admin/assets/plugins/fancyuploder/jquery.fancy-fileupload.js"></script>
+    <script src="/Admin/assets/plugins/fancyuploder/fancy-uploader.js"></script>
+    <script src="/Admin/assets/plugins/fileuploads/js/fileupload.js"></script>
+    <script src="/Admin/assets/plugins/fileuploads/js/file-upload.js"></script>
+    <!-- INTERNAL FORMEDITOR JS -->
+    <script src="/Admin/assets/plugins/quill/quill.min.js"></script>
+    <script src="/Admin/assets/js/form-editor2.js"></script>
+
+    <!-- Froala Editor JS-->
+    <script src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+    <script src="/Admin/assets/js/froala.js"></script>
+
+    <!-- Color Theme js -->
+    <script src="/Admin/assets/js/themeColors.js"></script>
+
+    <!-- Sticky js -->
+    <script src="/Admin/assets/js/sticky.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="/Admin/assets/js/custom.js"></script>
+    <script src="/Admin/assets/plugins/select2/select2.full.min.js"></script>
+          }
+

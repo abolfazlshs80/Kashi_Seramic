@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Pr_Signal_ir.MVC.Models.Category.CategoryVM>
+
+<div class="sidebar-widget categories">
+    <h4>دسته بندی</h4>
+    <div class="category-box">
+        <ul class="list-style">
+            @foreach (var cat in Model)
+            {
+                <li>
+                    <a href="/Category/@cat.Id/@cat.Name.SetForUrl()">
+                        <i class="flaticon-left-arrow-2"></i>
+                    @cat.Name
+                        <span>@cat.CategoryToBlog.Count</span>
+                    </a>
+                </li>
+            }
+          
+      
+        </ul>
+    </div>
+</div>

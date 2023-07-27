@@ -1,0 +1,87 @@
+﻿@using Pr_Signal_ir.MVC.Models.Ticket;
+
+@{
+    ViewBag.title = "تبکت ها ها";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین ,بیوتی ,,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین ";
+    ViewBag.description = "-با میدیریت  من  ام البنبن  هستم  و برند  بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model IEnumerable<TicketVM>
+
+
+<div class="col-md-12">
+    <div class="card text-end">
+        <a href="/User/Ticket/CreateTicket">تیکت جدید</a>
+        <div class="card-header justify-content-end">
+            <h3 class="card-title">تیکت ها ها</h3>
+            <br />
+
+        </div>
+
+        @if (Model.ToList().Count() < 1)
+        {
+
+            <div class="alert alert-info" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true">×</button>
+                <h4>تیکتی  موجود نیس</h4>
+                <br>
+
+            </div>
+
+
+        }
+
+        else
+        {
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table dir="rtl" class="table table-bordered border text-nowrap mb-0" id="new-edit">
+                        <thead>
+                            <tr>
+                                <th>
+                                    عنوان
+                                </th>
+                                <th>تاریخ</th>
+
+                                <th>وضعیت </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td>
+                                        <a href="/User/Ticket/ShowTicketById/@item.Id">      @item.Title</a>
+                                    </td>
+                                    <td class="slider_id">@item.LastModifiedDate?.ConvertDateToPersion()</td>
+                                    <td>@(item.Status ? "پاسخ داده شده" : "در انتطار پاسخ")</td>
+
+
+
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+
+
+
+<script src="/assets/plugins/accordion/accordion.min.js"></script>
+<script src="/assets/plugins/accordion/accordion.js"></script>

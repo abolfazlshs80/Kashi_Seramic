@@ -1,0 +1,26 @@
+﻿
+@model IEnumerable<ProductVM>
+
+<div class="sidebar-widget popular-post">
+    <h4>پست های محبوب</h4>
+    <div class="popular-post-widget">
+        @foreach (var Product in Model)
+        {
+            <div class="pp-post-item">
+                <a href="Product-details-right-sidebar.html" class="pp-post-img">
+                    <img src="@Product.FileToProduct?.FirstOrDefault()?.FileManager.Path.SetForProductUrl()" alt="@Product.TitleInBrowser">
+                </a>
+                <div class="pp-post-info">
+                    <span><i class="flaticon-calendar"></i>01 دی 1401</span>
+                    <h6>
+                        <a href="/Product/@Product.Id/@Product.Title.SetForUrl()" title="@Product.TitleInBrowser">
+                            @Product.Title
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>

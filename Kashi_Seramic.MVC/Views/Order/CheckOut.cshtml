@@ -1,0 +1,158 @@
+﻿@using SignalWebsite_RazorPage.Core.ViewModel
+@model ShowCardVM
+@{
+
+    ViewBag.title = "تسویه حساب";
+    ViewBag.keywords = "تسویه حساب , بیوتی,";
+    ViewBag.author = "";
+    ViewBag.description = "این قسمت برای تسویه حساب است";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.appcontent = true;
+    ViewBag.link = $"https://www.omolbininsafaribeauty.com/ManageVideoBlog/CheckOut";
+    ViewBag.imageurl = $"";
+    ViewBag.username = "";
+    ViewBag.path1 = "تسویه حساب";
+    ViewBag.path2 = "  پرداخت";
+    Layout = "_Layout";
+    int i = 1;
+}
+
+<style>
+    .row > label {
+        align-items: flex-end;
+        /* justify-items: center; */
+        display: flex;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row pt-5">
+
+                    <div class="col-lg-12 text-end">
+                        <p class="h4 fw-semibold">جزعیات پرداخت</p>
+
+                    </div>
+                </div>
+                <div class="table-responsive push">
+                    <table class="table table-bordered table-hover mb-0 text-nowrap" style="font-family:Vazir" dir="rtl">
+                        <tbody>
+                            <tr class=" text-end">
+                                <th class="text-center"></th>
+                                <th>دوره</th>
+                                <th class="text-center">تعداد</th>
+                                <th class="text-end">تخفیف</th>
+                                <th class="text-end">مجموع هزینه</th>
+                            </tr>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @foreach (var item in Model.Order.orderDetails)
+                                {
+                                    <tr class="text-end">
+                                        <td>@(i++)</td>
+                                        <td>
+                                            <p class="font-w600 mb-1">@item.Product.Title</p>
+
+                                        </td>
+                                        <td class="text-center">@item.Count</td>
+                                        <td class="text-end">@((int)item.Product.OffPrice)</td>
+                                        <td class="text-end">@((int)item.Price)</td>
+                                    </tr>
+                                }
+
+
+                                <tr>
+                                    <td colspan="4" class="fw-bold text-uppercase text-end">مجموع کل</td>
+                                    <td class="fw-bold text-end h4">@(Model.Order.orderDetails.Sum(a => a.Price))</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model.ShowCardNouser.CartItems)
+                                {
+                                    <tr class="text-end">
+                                        <td>@(i++)</td>
+                                        <td>
+                                            <p class="font-w600 mb-1">@item.Item.Title</p>
+
+                                        </td>
+                                        <td class="text-center">@item.Quantity</td>
+                                        <td class="text-end">@((item.Item.OffPrice.ConvertToInt().Equals(0) ? item.Item.Price : item.Item.OffPrice).ConvertToInt())</td>
+                                        <td class="text-end">@(((item.Item.OffPrice.ConvertToInt().Equals(0) ? item.Item.Price : item.Item.OffPrice) * (item.Quantity)).ConvertToInt())</td>
+                                    </tr>
+                                }
+
+
+                                <tr>
+                                    <td colspan="4" class="fw-bold text-uppercase text-end">مجموع کل</td>
+                                    <td class="fw-bold text-end h4">@((Model.ShowCardNouser.CartItems.Sum(c => (c.Item.OffPrice.ConvertToInt().Equals(0) ? c.Item.Price : c.Item.OffPrice) * c.Quantity).ConvertToInt()))</td>
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <form action="/Order/Payment" method="post">
+                <div class="row">
+
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <div class="col-md-12  text-end" style="font-family:Vazir">
+                            <div class=" mx-5" dir="rtl">
+                                <div class="row">
+                                    <label dir="ltr" for="name" class="col-md-1   text-start">:نام</label>
+                                    <input required="" type="text" class="form-control col-md-3  text-end" name="name" id="name" placeholder="...نام خود را وارد کنید" />
+
+                                </div>
+                                <div class="row">
+                                    <label dir="ltr" for="name" class="col-md-1   text-start">:نام خانوادگی</label>
+                                    <input required="" type="text" class="form-control col-md-3 mt-5  text-end" name="family" id="family" placeholder="...فامیلی خود را وارد کنید" />
+                                </div>
+                                @*       <div class="row">
+                            <label dir="ltr" for="name" class="col-md-1   text-start">:شماره</label>
+                            <input required="" type="text" class="form-control mt-5  col-md-3 text-end" name="phone" id="phone" placeholder="...شماره خود را وارد کنید" />
+                            </div>*@
+                                <div class="row">
+                                    <label dir="ltr" for="name" class="col-md-1   text-start">:نام کاربری</label>
+
+                                    <input required="" type="text" class="form-control mt-5  col-md-3 text-end" name="username" id="username" placeholder="...نام کاربری خود را وارد کنید" />
+                                </div>
+                                <div class="row">
+                                    <label dir="ltr" for="name" class="col-md-1   text-start">: ایمیل</label>
+
+                                    <input type="text" class="form-control mt-5  col-md-3 text-end" name="email" id="email" placeholder="...ایمیل خود را وارد کنید" />
+                                </div>
+                                <div class="row">
+                                    <label dir="ltr" for="name" class="col-md-1   text-start">: کلمه عبور</label>
+
+                                    <input required="" type="password" class="form-control mt-5  col-md-3 text-end" name="password" id="password" placeholder="...کلمه عبور خود را وارد کنید" />
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    }
+
+
+                </div>
+                <div class="card-footer text-end mt-5" style="">
+                    <input type="submit" class="btn btn-primary mb-1" value=" پرداخت">
+
+                    <button type="button" class="btn btn-danger mb-1" onclick="javascript:window.print();"><i class="si si-printer"></i> چاپ</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- COL-END -->
+</div>
+<div id="IsError" class="d-none">@ViewBag.ErrorMessage</div>
+
+<button class="d-none" id="myBtn">Open Modal</button>

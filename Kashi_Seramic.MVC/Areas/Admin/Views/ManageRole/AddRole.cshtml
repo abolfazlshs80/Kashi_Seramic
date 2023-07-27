@@ -1,0 +1,43 @@
+﻿@using Pr_Signal_ir.MVC.Models.Roles;
+@model RoleVM
+@{
+
+    ViewBag.title = "اضافه کردن مقام جدید";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+}
+
+<h1> افزودن مقام</h1>
+<form action="/Admin/ManageRole/AddRole" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <label class="control-label">نام :</label>
+        <input class="form-control" name="@nameof(Model.RoleName)" value="@Model.RoleName" />
+        <input class="form-control" hidden name="@nameof(Model.RoleId)" value="@Model.RoleId" />
+
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="ثبت" />
+</form>
+
+
+
+
+<script>
+    var name = document.getElementById("name").getAttribute("value");
+    function showcard(id) {
+        console.log("hello");
+        $.get("/Admin/ManageRole/EditRole/" + id + "/" + name
+            , function (resualt) {
+
+                return "/Home/Index";
+            });
+
+    }
+</script>

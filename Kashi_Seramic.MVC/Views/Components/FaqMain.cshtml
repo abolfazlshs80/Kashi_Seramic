@@ -1,0 +1,54 @@
+﻿@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.FaqUser
+
+@model IEnumerable<FaqUserVM>
+
+<section class="faq-wrap style2 ptb-100 bg-seashell">
+    <div class="container">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="200">
+                <div class="faq-img-wrap">
+                    <img src="/Kashi_Seramic_Theme/assets/img/faq-img-2.png" alt="Image">
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+                <div class="faq-content">
+                    <div class="content-title style1">
+                        <span>سوالی دارید؟</span>
+                        <h2>سوالات متداول</h2>
+                    </div>
+                    <div class="accordion" id="accordionExample">
+                        
+                        
+                        @foreach (var faq in Model)
+                        {
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading@(faq.Id)">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse@(faq.Id)" aria-expanded="False"
+                                        aria-controls="collapse@(faq.Id)">
+                                        <span>
+                                            <i class="flaticon-plus plus"></i>
+                                            <i class="flaticon-minus-sign minus"></i>
+                                        </span>
+                                     @faq.Text
+                                    </button>
+                                </h2>
+                                <div id="collapse@(faq.Id)" class="accordion-collapse collapse "
+                                 aria-labelledby="heading@(faq.Id)" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="single-product-text">
+                                            <p>
+                                          @faq.ReplayText
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

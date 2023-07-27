@@ -1,0 +1,155 @@
+﻿@model Pr_Signal_ir.MVC.Models.Search.SearchAllVM
+
+@{
+    ViewBag.pageType = "website";
+    ViewBag.TitleBrowser =  ViewBag.Title;
+    ViewBag.keywords = string.Join(',', Model.SearchVM);
+    ViewBag.author = Model.Setting.CreatedBy;
+  //  ViewBag.description = Model.LongTitle;
+    ViewBag.robot = "index,follow";
+    ViewBag.socialmedia = true;
+  //  ViewBag.link = Model.Setting.SitePath+"/blog/"+Model.Id+"/"+Model.ShortTitle.SetForUrl();
+    ViewBag.imageurl = Model.Setting.SitePath+"/Kashi_Seramic_Theme/assets/img/favicon.png";
+    ViewBag.username = Model.Setting.InstagramUserName;
+    Layout = "_Layout";
+}
+@{
+    int Id = ViewBag.Id;
+    int CurentPage = ViewBag.page;
+    int PageCount = ViewBag.count;
+    string PageType = ViewBag.type;
+    string PageTitle = ViewBag.title;
+}
+<div class="blog-wrap ptb-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach (var item in Model.SearchVM.Distinct().ToList())
+            {
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="blog-card style1">
+                        <div class="blog-img">
+                            <img src="@item.path" alt="@item.Title" class="ImageBaner">
+                        </div>
+                        <div class="blog-info">
+                            @if (item.Type.Equals("Blog"))
+                            {
+                                <ul class="blog-metainfo  list-style">
+                                    <li><i class="flaticon-calendar"></i><a href="#">@item.Blog.LastModifiedDate?.ToShortDateString()</a></li>
+                                    <li><i class="flaticon-chat-comment-oval-speech-bubble-with-text-lines"></i>@item.Blog.CommentToBlog.Count نظر</li>
+                                </ul>
+                            }
+                       @*      if (item.Type.Equals("Search"))
+                            {
+                   
+                            }*@
+                            <h3><a href="@item.Url">@item.Title</a></h3>
+                            <a href="blog-details-right-sidebar.html" class="link style2">
+                                @(item.Type.Equals("Blog") ? "    ادامه خواندن" : "افزودن به سبد خرید")
+                                <i class="flaticon-back"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+     
+        @if (Id.Equals(0))
+        {
+            <ul class="page-nav list-style mt-10">
+                <li>
+                    <a href="/@PageType/@PageTitle/@(CurentPage!=0?CurentPage-1:CurentPage)">
+                        <i class="flaticon-next-1"></i>
+
+                    </a>
+                </li>
+                @for (int i = 0; i < PageCount; i++)
+                {
+                    if (i.Equals(CurentPage))
+                    {
+                   
+                        <li class="">
+                            <a class="active" href="/@PageType/@PageTitle/@i" tabindex="-1">@(i + 1)</a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class=""><a class="" href="/@PageType/@PageTitle/@i">@(i + 1)</a></li>
+
+                    }
+                }
+
+
+
+                <li>
+                    <a href="/@PageType/@PageTitle/@(PageCount > CurentPage?(CurentPage+1):CurentPage)">
+                        <i class="flaticon-back"></i>
+
+                    </a>
+
+                </li>
+  
+            </ul>
+        }
+        else
+        {
+            <ul class="page-nav list-style mt-10">
+                <li>
+                    <a href="/@PageType/@Id/@PageTitle/@(CurentPage!=0?CurentPage-1:CurentPage)">
+                        <i class="flaticon-next-1"></i>
+
+                    </a>
+                </li>
+                @for (int i = 0; i < PageCount; i++)
+                {
+                    if (i.Equals(CurentPage))
+                    {
+                   
+                        <li class="">
+                            <a class="active" href="/@PageType/@Id/@PageTitle/@i" tabindex="-1">@(i + 1)</a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class=""><a class="" href="/@PageType/@Id/@PageTitle/@i">@(i + 1)</a></li>
+
+                    }
+                }
+
+
+
+                <li>
+                    <a href="/@PageType/@ViewBag.Id/@PageTitle/@(PageCount > CurentPage?(CurentPage+1):CurentPage)">
+                        <i class="flaticon-back"></i>
+
+                    </a>
+
+                </li>
+  
+            </ul>
+        }
+      
+    </div>
+</div>
+@section Scripts
+{
+
+    <script>
+        var model = @(Json.Serialize(Model))
+        const script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+
+        script.textContent = '        {            "@@context": "https://schema.org","@@type": "ItemList","itemListElement": [';
+        for (var i = 0; i < model["searchVM"]["$values"].length; i++) {
+            if (i != 0) { script.textContent =script.textContent + ','; }
+
+            script.textContent = script.textContent + '       {         "@@type": "ListItem",           "position": "' + i + '",    "item": {   "@@type": "Movie",   "url": "' + model["setting"]["sitePath"] + model["searchVM"]["$values"][i]["url"] + '", "name": "' + model["searchVM"]["$values"][i]["title"] + '",                                "image": "'+model["setting"]["sitePath"]+model["searchVM"]["$values"][i]["path"]+'",                                "dateCreated": "'+model["searchVM"]["$values"][i]["date"]+'",                                "director": {                                    "@@type": "Person",                                    "name": "'+model["searchVM"]["$values"][i]["owener"]+'"                                },                                "review": {                                    "@@type": "Review",                                    "reviewRating": {                                        "@@type": "Rating",                                        "ratingValue": "5"                                  },                                  "author": {                                       "@@type": "Person",                                       "name": "'+model["searchVM"]["$values"][i]["owener"]+'"                                   },                                   "reviewBody": "'+model["searchVM"]["$values"][i]["desc"]+'"                                },                               "aggregateRating": {                                   "@@type": "AggregateRating",                                    "ratingValue": "90",                                    "bestRating": "100",                                    "ratingCount": "19141"                                }                            }                        }';
+        }
+        script.textContent = script.textContent + ']}';
+     document.head.appendChild(script);
+
+    </script>
+}

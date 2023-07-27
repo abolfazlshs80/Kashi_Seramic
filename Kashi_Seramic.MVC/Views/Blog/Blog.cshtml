@@ -1,0 +1,82 @@
+﻿@model BlogVM
+@{
+    ViewBag.pageType = "article";
+    ViewBag.TitleBrowser = Model.TitleBrowser +"-"+ViewBag.Title;
+    ViewBag.keywords = string.Join(',', Model.TagToBlog);
+    ViewBag.author = Model.CreatedBy;
+    ViewBag.description = Model.LongTitle;
+    ViewBag.robot = "index,follow";
+    ViewBag.socialmedia = true;
+    ViewBag.link = Model.Setting.SitePath+"/blog/"+Model.Id+"/"+Model.ShortTitle.SetForUrl();
+    ViewBag.imageurl = Model.Setting.SitePath+ Model?.FileToBlog?.FirstOrDefault()?.FileManager?.Path?.SetForBlogUrl();
+    ViewBag.username = Model.Setting.InstagramUserName;
+    Layout = "_Layout";
+}
+@{
+    ViewBag.type = "Blog";
+    ViewBag.blogid = Model.Id;
+}
+
+<div class="blog-details-wrap ptb-100">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-xl-4 col-lg-12 order-xl-1 order-lg-2 order-md-2 order-2">
+                <div class="sidebar">
+                    @await Component.InvokeAsync("BlogSearchComponents")
+                    @await Component.InvokeAsync("BlogCategoryComponents")
+                    @await Component.InvokeAsync("BlogTopComponents")
+                    @await Component.InvokeAsync("BlogTagComponents")
+
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-12 order-xl-2 order-lg-1 order-md-1 order-1">
+                <article>
+                    <div class="post-img">
+                        <img id="Imgback" src="@Model.FileToBlog?.FirstOrDefault()?.FileManager?.Path?.SetForBlogBackUrl()" alt="@Model.LongTitle">
+                    </div>
+                    <ul class="post-metainfo  list-style">
+                        <li>
+                            <i class="flaticon-calendar"></i><a href="posts-by-date.html">@Model.LastModifiedDate?.ConvertDateToPersion()</a>
+                        </li>
+                        <li>
+                            <i class="flaticon-chat-comment-oval-speech-bubble-with-text-lines"></i>@Model.CommentToBlog.Count نظر
+                        </li>
+                    </ul>
+                    <h2>@Model.LongTitle</h2>
+                    <div class="post-para">
+                        @Html.Raw(Model.Text)
+                    </div>
+                </article>
+
+                <div class="comment-box-wrap">
+                    <div class="comment-box-title mb-30">
+                        <h4><span>@Model.CommentToBlog.Count</span> نظر</h4>
+                    </div>
+                    @await Component.InvokeAsync("BlogShowCommentsComponents")
+                    @await Component.InvokeAsync("BlogAddCommentsComponents")
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+@section Scripts
+    {
+    <script>
+       var model=@(Json.Serialize(Model))
+       var imgSource=document.querySelector("#Imgback").getAttribute("src");
+        const script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        script.textContent = ' {      "@@context": "https://schema.org",      "@@type": "NewsArticle",      "headline": "' + model["shortTitle"]  + ' مقاله ",      "image": [       "' +model["setting"]["sitePath"]+imgSource + '"     ],      "datePublished": "'+model["dateCreated"]+'",     "dateModified": "'+model["dateCreated"]+'",      "author": [{          "@@type": "Person",    "name": "'+model["createdBy"]+'", "url": "'+model["setting"]["sitePath"]+'" }]}';
+      document.head.appendChild(script);
+
+
+    </script>
+}
+
+
+

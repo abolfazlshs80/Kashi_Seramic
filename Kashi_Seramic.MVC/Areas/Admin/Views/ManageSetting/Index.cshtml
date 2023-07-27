@@ -1,0 +1,272 @@
+﻿@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.Setting;
+@using Pr_Signal_ir.MVC.Models.Teacher;
+@model SettingVM
+@{
+
+    ViewBag.title = "اطلاعات سایت";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="col-md-12" dir="rtl">
+    <div class="card text-end ">
+        <div class="card-header ">
+            @if (ViewBag.error != null)
+            {
+                <p class="alert alert-info">با موفقیت اطلاعات ثبت شد</p>
+            }
+
+            <h3 class="card-title  text-center">درباره من</h3>
+        </div>
+        <div class="card-body" style="font-family:Tahoma">
+            @using (Html.BeginForm("Edit", "ManageSetting", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary()
+
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.Phone1)
+                    <input type="text" name="Model.Phone1" value="@Model.Phone1" class="form-control mb-4 " placeholder=" وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.Phone1)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.Title)
+                    <input type="text" name="Model.Title" value="@Model.Title" class="form-control mb-4 " placeholder=" وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.Title)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.TitleDesc)
+                    <input type="text" name="Model.TitleDesc" value="@Model.TitleDesc" class="form-control mb-4 " placeholder=" وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.TitleDesc)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.TelegramChannle)
+                    <input type="text" name="Model.TelegramChannle" value="@Model.TelegramChannle" class="form-control mb-4 " placeholder=" وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.TelegramChannle)</span>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.TelegramNumber)
+                    <input type="text" name="Model.TelegramNumber" value="@Model.TelegramNumber" class="form-control mb-4 " placeholder=" وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.TelegramNumber)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.WhatappNumber)
+                    <input type="text" name="Model.WhatappNumber" value="@Model.WhatappNumber" class="form-control mb-4 " placeholder=" وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.WhatappNumber)</span>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.Phone2)
+                    <input value="@Model.Phone2" type="text" name="Model.Phone2" class="form-control mb-4 " placeholder="مقام  مدرس را وارد کنید..." required="" />
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.Phone2)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.SitePath)
+
+                    <input value="@Model.SitePath" type="text" name="Model.SitePath" class="form-control mb-4 " placeholder="عنوان مرورگر را وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.SitePath)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.LogoPath)
+                    <input value="@Model.LogoPath" type="hidden" name="Model.LogoPath" class="form-control mb-4 " placeholder="شماره واتسآپ را وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.LogoPath)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.AddressCompany)
+                    <input value="@Model.AddressCompany" type="text" name="Model.AddressCompany" class="form-control mb-4 " placeholder="نام کاربری اینستاگرام را وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.AddressCompany)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.Desc)
+                    <input value="@Model.Desc" type="text" name="Model.Desc" class="form-control mb-4 " placeholder="امیل را وارد کنید اختیاری..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.Desc)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.FotterDesc)
+                    <input value="@Model.FotterDesc" type="text" name="Model.FotterDesc" class="form-control mb-4 " placeholder="توضیحات فوتر وارد کنید اختیاری..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.FotterDesc)</span>
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" name="Model.Id" value="@Model.Id" />
+
+
+                    @Html.LabelFor(a=>a.DeveloperName)
+                    <input value="@Model.DeveloperName" type="text" name="Model.DeveloperName" class="form-control mb-4 " placeholder="توضیح مختصر را وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.DeveloperName)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.Gmail)
+                    <input value="@Model.Gmail" type="text" name="Model.Gmail" class="form-control mb-4 " placeholder="کلمه کلیدی را وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.Gmail)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.InstagramUserName)
+                    <input value="@Model.InstagramUserName" type="text" name="Model.InstagramUserName" class="form-control mb-4 " placeholder="کلمه کلیدی را وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.InstagramUserName)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.OwnerName)
+                    <input value="@Model.OwnerName" type="text" name="Model.OwnerName" class="form-control mb-4 " placeholder="کلمه کلیدی را وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.OwnerName)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.GmailPassword)
+                    <input value="@Model.GmailPassword" type="text" name="Model.GmailPassword" class="form-control mb-4 " placeholder="کلمه کلیدی را وارد کنید..." required="" />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.GmailPassword)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.IsKashiManinPage)
+                    <input type="checkbox" @(Model.IsKashiManinPage?"checked":String.Empty) name="Model.IsKashiManinPage" value="true" class="f mb-4 " />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.IsKashiManinPage)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.IsLastProductManinPage)
+
+                    <input type="checkbox" @(Model.IsLastProductManinPage?"checked":String.Empty) name="Model.IsLastProductManinPage" value="true" class="f mb-4 " />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.IsLastProductManinPage)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.IsTopProductManinPage)
+                    <input type="checkbox" @(Model.IsTopProductManinPage?"checked":String.Empty) name="Model.IsTopProductManinPage" value="true" class=" mb-4 " />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.IsTopProductManinPage)</span>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.IsSlider)
+                    <input type="checkbox" @(Model.IsSlider?"checked":String.Empty) name="Model.IsSlider" value="true" class=" mb-4 " />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.IsSlider)</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.IsBlog)
+                    <input type="checkbox" @(Model.IsBlog?"checked":String.Empty) name="Model.IsBlog" value="true" class=" mb-4 " />
+
+                    <span class="invalid-feedback">@Html.ValidationMessageFor(a=>a.IsBlog)</span>
+                </div>
+                @*                <div class="col-lg-4 col-sm-12 mb-4 mb-lg-0">
+            <label for="fileslider">تصویر برای  اسلایدر صفحه اصلی 272*488</label>
+            <input type="file" name="Model.File" id="fileslider" class="dropify" data-bs-height="180" />
+            </div>*@
+                <div class="col-lg-4 col-sm-12 mb-4 mb-lg-0">
+                    <label for="fileslider">تصویر برای لوگو jpg 272*488</label>
+                    <input type="file" name="Model.FileHeader" id="fileslider" class="dropify" data-bs-height="180"/>
+                </div>
+
+
+                <textarea required="" name="Model.AboutText" id="summernote">
+            @Model.AboutText
+            </textarea>
+                <textarea required="" name="Model.MapCode" id="summernote" class="w-75">
+            @Model.MapCode
+            </textarea>
+                <textarea required="" name="Model.DeveloperLinkName" id="summernote" class="w-75">
+                    @Model.DeveloperLinkName
+                </textarea>
+                <input type="submit" class="btn btn-primary" value="ثبت" />
+            }
+
+            <h1 [sdsd]></h1>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <!-- INTERNAL SUMMERNOTE Editor JS -->
+    <script src="/Admin/assets/plugins/summernote/summernote1.js"></script>
+    <script src="/Admin/assets/js/summernote.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/jquery.min.js"></script>
+
+    <!-- BOOTSTRAP JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- SIDEBAR JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/sidebar/sidebar.js"></script>
+
+    <!-- INPUT MASK JS-->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/input-mask/jquery.mask.min.js"></script>
+
+    <!-- SIDE-MENU JS-->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/sidemenu/sidemenu.js"></script>
+
+    <!-- TypeHead js -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/bootstrap5-typehead/autocomplete.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/typehead.js"></script>
+
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/p-scroll/pscroll.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/p-scroll/pscroll-1.js"></script>
+
+    <!-- INTERNAL WYSIWYG Editor JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/wysiwyag/jquery.richtext.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/wysiwyag/wysiwyag.js"></script>
+
+    <!-- INTERNAL SUMMERNOTE Editor JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/summernote/summernote1.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/summernote.js"></script>
+
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/jquery.ui.widget.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/jquery.fileupload.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/jquery.iframe-transport.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/jquery.fancy-fileupload.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fancyuploder/fancy-uploader.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fileuploads/js/fileupload.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/fileuploads/js/file-upload.js"></script>
+    <!-- INTERNAL FORMEDITOR JS -->
+    <script src="/Kashi_Seramic_Theme/assets/plugins/quill/quill.min.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/form-editor2.js"></script>
+
+    <!-- Froala Editor JS-->
+    <script src='https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'></script>
+    <script src="/Kashi_Seramic_Theme/assets/js/froala.js"></script>
+
+    <!-- Color Theme js -->
+    <script src="/Kashi_Seramic_Theme/assets/js/themeColors.js"></script>
+
+    <!-- Sticky js -->
+    <script src="/Kashi_Seramic_Theme/assets/js/sticky.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="/Kashi_Seramic_Theme/assets/js/custom.js"></script>
+    <script src="/Kashi_Seramic_Theme/assets/plugins/select2/select2.full.min.js"></script>
+          }

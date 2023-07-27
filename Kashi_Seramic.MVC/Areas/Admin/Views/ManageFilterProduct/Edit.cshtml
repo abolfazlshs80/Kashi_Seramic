@@ -1,0 +1,57 @@
+﻿@using Pr_Signal_ir.MVC.Models.FilterProduct;
+
+
+@model UpdateFilterProductVM
+
+@{
+    ViewBag.title = " ویرایش دسته جدید";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-md-12" dir="rtl">
+    <div class="card" dir="rtl">
+        <div class="card-header">
+            <h3 class="card-title">ویرایش دسته بندی</h3>
+        </div>
+        <div class="card-body pb-2 ">
+            <form class="needs-validation was-validated" action="/Admin/ManageFilterProduct/Edit" method="post" enctype="multipart/form-data">
+                <div class="row row-sm">
+                    @*  @Html.HiddenFor(a=>a.Id)*@
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input name="Model.Title" value="@Model.Title" class="form-control mb-4 is-invalid state-invalid" type="text" required placeholder="دسته بندی را وارد کنید..." />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <input name="Model.TitleInBrowser" value="@Model.TitleInBrowser" class="form-control mb-4 is-invalid state-invalid" type="text" required placeholder="عنوان فیلتر  در مرورگر را وارد کنید..." />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+
+                            <input name="Model.Text" value="@Model.Text" class="form-control mb-4 is-invalid state-invalid" type="text" required placeholder=" متن فیلتر را وارد کنید..." />
+                        </div>
+                    </div>
+                    @await Component.InvokeAsync("CategoryItemCreateComponents")
+           
+                    <input type="submit" class="btn btn-success col-md-2 mt-3" value="ثبت" />
+                    <input type="hidden" name="Model.Id" value="@Model.Id" />
+                    <a onclick="history.back()" class="btn btn-danger col-md-2 mt-3 mx-2">انصراف</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>

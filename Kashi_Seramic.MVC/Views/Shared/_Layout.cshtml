@@ -1,0 +1,247 @@
+﻿@using System.Web.Http.ModelBinding
+@{
+      //ViewBag.LocationBarOne = "";
+      //ViewBag.StatusLocationBarOne = false;
+      //ViewBag.StatusLocationBar = false;
+
+
+    if (ViewBag.socialmedia == null)
+    {
+        ViewBag.socialmedia = true;
+    }
+  
+    if (ViewBag.notfooter == null)
+    {
+        ViewBag.notfooter = false;
+    }
+    if (ViewBag.notBanner == null)
+    {
+        ViewBag.notBanner = true;
+
+    }
+    if (ViewBag.notmenu == null)
+    {
+        ViewBag.notmenu = false;
+
+
+
+    }
+
+    if (ViewBag.appcontent == null)
+    {
+        ViewBag.appcontent = false;
+
+
+
+    }
+}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <title>@ViewBag.TitleBrowser</title>
+
+
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/flaticon.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/remixicon.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/fancybox.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/jquery-ui-min.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/aos.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/style.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/responsive.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/dark-theme.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/rtl.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/ShopingCard.css">
+    <link rel="stylesheet" href="/Kashi_Seramic_Theme/assets/css/main.css">
+    @await RenderSectionAsync("Link", required: false)
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="/Kashi_Seramic_Theme/assets/img/favicon.png">
+    <!-- FAVICON -->
+    
+    
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="@ViewBag.description">
+    <meta name="author" content="@ViewBag.author">
+    <meta name="keywords" content="@ViewBag.keywords">
+    <meta name="robots" content="@ViewBag.robot">
+ 
+    <link rel="canonical" href="@ViewBag.link" />
+    @if (ViewBag.socialmedia)
+    {
+        <!-- soctial media -->
+        <meta property="og:type" content="@ViewBag.pageType" />
+        <meta property="og:title" content="@ViewBag.TitleBrowser" />
+        <meta property="og:description" content="@ViewBag.description" />
+        <meta property="og:image" content="@ViewBag.imageurl" />
+        <meta property="og:url" content="@ViewBag.link" />
+        <meta property="og:site_name" content="صفری بیوتی" />
+        <!-- soctial media -->
+        <!--Twitter-->
+        <meta name="twitter:title" content="@ViewBag.TitleBrowser">
+        <meta name="twitter:description" content="@ViewBag.description">
+        <meta name="twitter:image" content="@ViewBag.imageurl">
+        <meta name="twitter:site" content="@ViewBag.username">
+        <!--Twitter-->
+    }
+    
+
+</head>
+
+<body>
+
+@*    <div class="loader js-preloader">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>*@
+
+
+    <div class="switch-theme-mode">
+        <label id="switch" class="switch">
+            <input type="checkbox" onchange="toggleTheme()" id="slider">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
+    <div class="page-wrapper">
+
+        @await Component.InvokeAsync("MenuMainComponents")
+
+        @if (ViewBag.StatusLocationBar==true)
+        {
+            @await Component.InvokeAsync("LocationBarComponents")
+        }
+       
+
+        @RenderBody()
+
+
+
+        @await Component.InvokeAsync("FooterMainComponents")
+
+
+    </div>
+
+
+    <a href="javascript:void(0)" class="back-to-top bounce"><i class="ri-arrow-up-s-line"></i></a>
+
+
+    <div class="modal fade" id="signIn" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="ri-close-line"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center gx-5">
+                        <div class="col-md-6">
+                            <div class="login-bg bg-f">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="login-content">
+                                <h2>وارد شوید</h2>
+                                @if (!string.IsNullOrEmpty(ViewBag.Error as string))
+                                {
+                                    <span class="text-danger" id="MsgErr">@ViewBag.Error</span>
+                                }
+                                <form class="user-form" action="/login" method="get">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <input id="text" name="email" type="text" placeholder="نام کاربری"
+                                                       required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <input id="pwd" name="password" type="password" placeholder="رمز" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <button class="btn style1" id="Button_Login">وارد شوید</button> 
+
+                                                <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <p class="text-center mb-10">یا</p>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <button type="button" class="btn fb">
+                                                    ورود با فیس بوک <span>
+                                                        <i class="ri-facebook-fill"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <button type="button" class="btn linkedin">
+                                                    ورود با لینکدین <span>
+                                                        <i class="ri-linkedin-fill"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group mb-0">
+                                                <button type="button" class="btn twitter">
+                                                    ورود با توئیتر <span>
+                                                        <i class="ri-twitter-fill"></i>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+@await Component.InvokeAsync("SignUpComponents")
+@await Component.InvokeAsync("ModalComponents")
+
+</body>
+<script src="/Kashi_Seramic_Theme/assets/js/jquery.min.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/User/main.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/form-validator.min.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/contact-form-script.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/aos.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/owl.carousel.min.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/jquery-ui-min.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/odometer.min.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/fancybox.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/jquery.appear.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/tweenmax.min.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/main.js"></script>
+<script src="/Kashi_Seramic_Theme/assets/js/MainScript.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-41ZLEW3492"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-41ZLEW3492');
+</script>
+@await RenderSectionAsync("Scripts", required: false)
+</html>

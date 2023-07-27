@@ -1,0 +1,95 @@
+﻿@model Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.Setting.SettingVM
+
+
+@{
+    ViewBag.pageType = "website";
+        ViewBag.TitleBrowser = Model.Title +"-"+ViewBag.Title;
+        ViewBag.keywords = "";
+        ViewBag.author = Model.OwnerName;
+        ViewBag.description = Model.Desc;
+        ViewBag.robot = "index,follow";
+        ViewBag.socialmedia = true;
+        ViewBag.link = Model.SitePath;
+        ViewBag.imageurl = Model.SitePath+"/Kashi_Seramic_Theme/assets/img/favicon.png";
+        ViewBag.username = Model.InstagramUserName;
+        Layout = "_Layout";
+    }
+
+    @if (Model.IsSlider)
+    {
+@await Component.InvokeAsync("HeaderMainPageComponents")
+    }
+       
+
+@*<div class="container">
+    <div class="search-property style1">
+        <form action="#" class="property-search-form">
+            <div class="form-group">
+                <input type="text" placeholder="موقعیت">
+            </div>
+            <div class="form-group">
+                <select name="price-range" id="price-range">
+                    <option value="0" data-display="Price Range">محدوده قیمت</option>
+                    <option value="1">1000 تومان - 2000 تومان</option>
+                    <option value="2">10000 تومان - 20000 تومان</option>
+                    <option value="3">100000 تومان - 200000 تومان</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="property_commodity" id="property_commodity">
+                    <option value="0" data-display="Bed &amp; Baths">حمام و اتاق</option>
+                    <option value="1">2 تخت 2 حمام</option>
+                    <option value="2">3 تخت 2 حمام</option>
+                    <option value="3">4 تخت 3 حمام</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn style2">جستجوی ملک</button>
+            </div>
+        </form>
+    </div>
+</div>*@
+
+@if (Model.IsKashiManinPage)
+{
+    @await Component.InvokeAsync("VilaItemMainPageComponents")
+}
+
+@if (Model.IsBlog)
+{
+    @await Component.InvokeAsync("NewBlogMainPageComponents")
+}
+
+@if (Model.IsTopProductManinPage)
+{@await Component.InvokeAsync("TopProductItemMainPageComponents");
+
+}
+)
+@if (Model.IsLastProductManinPage)
+{
+@await Component.InvokeAsync("LastProductItemMainPageComponents")
+}
+
+
+
+@await Component.InvokeAsync("FaqMainComponents")
+@section Scripts
+    {
+    <script>
+        let model = @Json.Serialize(Model);
+
+                           const script = document.createElement('script');
+        const script1 = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        script1.setAttribute('type', 'application/ld+json');
+        script.textContent = '{"@@context": "https://schema.org","@@type": "WebSite","name": "' + model["title"] + '-  صفحه اصلی ", "url": "'+model["SitePath"]+'","description": "' + model["desc"] + '" }';
+        script1.textContent = '{ "@@context": "http://schema.org", "@@type": "BreadcrumbList","itemListElement": [{ "@@type": "ListItem", "position": 1,"item": {"@@id": "' + model["sitePath"] + '","name": "صفحه اصلی" }},{"@@type": "ListItem","position": 2,"item": {"@@id": "' + model["sitePath"] + 'contact","name": "ارتباط با ما"}},{"@@type": "ListItem","position": 3,"item": {"@@id": "' + model["sitePath"] + 'about","name": "درباره ما"}},{"@@type": "ListItem","position": 4,"item": {"@@id": "' + model["sitePath"] + 'shop","name": "فروشگاه "}}{"@@type": "ListItem","position": 5,"item": {"@@id": "' + model["SitePath"] + 'blog","name": "مقاله ها"}}{"@@type": "ListItem","position": 6,"item": {"@@id": "' + model["sitePath"] + 'category","name": "دسته بندی ها"}}]}'
+
+
+        document.head.appendChild(script);
+        document.head.appendChild(script1);
+
+    </script>
+
+}
+

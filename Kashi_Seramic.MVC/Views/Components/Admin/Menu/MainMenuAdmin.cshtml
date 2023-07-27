@@ -1,0 +1,54 @@
+﻿@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.Menu;
+
+@model MenuListVM
+<div class="col-md-2 px-0   ml-5">
+    <div class="card">
+        <div class="card-body sidebarmenu">
+            <div class="list-group  list-group-transparent mb-0  text-end">
+                <div class="justify-content-center" style="margin-right:20%">
+
+                    @*    @await Component.InvokeAsync("ShowProfileComponent1")*@
+                </div>
+
+                @foreach (var item in Model.Menu)
+                {
+                    if (User.IsInRole(item.RoleName))
+                    {
+                        if (item.StatusInUserMenu||item.StatusInAdminMenu)
+                        {
+                            <div class="sidebar-link">
+                                <a href="@(item.Href)" class="list-group-item text-white  d-flex align-items-center justify-content-end px-0 ">
+                                    @item.Title <i class="@item.Icons fs-18 me-2 text-white p-2"></i>
+                                </a>
+                            </div>
+                        }
+                      
+                    }
+
+                }
+
+
+
+                @if (User.IsInRole("AdminSite"))
+                {
+
+
+                }
+                else if (User.IsInRole("Admin"))
+                {
+                    @*            <div class="sidebar-link">
+                <a href="/Admin/ManageUser/index" class="list-group-item text-white   d-flex align-items-center justify-content-end px-0 ">
+                کاربران     <i class="fe fe-user fs-18 me-2 text-white p-2"></i>
+                </a>
+                </div>
+                *@
+
+                }
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,147 @@
+﻿@model Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.Setting.SettingVM
+
+@{
+    ViewBag.pageType = "website";
+    ViewBag.TitleBrowser = Model.Title +"-"+ViewBag.Title;
+    ViewBag.keywords = "ارتباط با ما, تماس با ما,    نظرات و پیشنهادات, پشتیبانی مشتریان, اطلاعات تماس,  پرسش‌های متداول,  فرم تماس,  تماس با پشتیبانی, ارسال درخواست, تماس تلفنی";
+    ViewBag.author = Model.OwnerName;
+    ViewBag.description ="صفحه ارتباط با ما در وب‌سایت فروش کاشی، به کاربران امکان ارتباط مستقیم با شرکت یا فروشگاه را فراهم می‌کند. در این صفحه، کاربران می‌توانند نظرات، پرسش‌ها یا درخواست‌های خود را ارسال کنند و با تیم پشتیبانی یا مسئولان مرتبط در تماس باشند.";
+    ViewBag.robot = "index,follow";
+    ViewBag.socialmedia = true;
+    ViewBag.link = Model.SitePath+"/contact";
+    ViewBag.imageurl = Model.SitePath+"/Kashi_Seramic_Theme/assets/img/favicon.png";
+    ViewBag.username = Model.InstagramUserName;
+    Layout = "_Layout";
+}
+<section class="contact-us-wrap ptb-100">
+    <div class="container">
+        <div class="row justify-content-center pb-75">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <i class="flaticon-map"></i>
+                    </span>
+                    <div class="contact-info">
+                        <h3>در هر زمان به ما سر بزنید</h3>
+                        <p>
+                            سنت لوئیس ، خیابان 2245 <br> ایالات متحده آمریکا
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <i class="flaticon-email-2"></i>
+                    </span>
+                    <div class="contact-info">
+                        <h3>ارسال یک ایمیل</h3>
+                        <a href="mailto: hello@fela.com">@Model.Gmail</a>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <i class="flaticon-call-2"></i>
+                    </span>
+                    <div class="contact-info">
+                        <h3>مرکز تماس</h3>
+                        <a href="tel:@Model.Phone1">@Model.Phone1</a>
+                        <a href="tel:@Model.Phone2">@Model.Phone2</a>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                <div class="contact-content">
+                    <div class="content-title style1">
+                        <span>تماس با ما</span>
+                        <h2>چگونه ما میتوانیم به شما کمک کنیم؟</h2>
+                        <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
+                    </div>
+                    <ul class="social-profile list-style style1">
+                  
+                        <li>
+                            <a target="_blank" href="@Model.TelegramChannle">
+                                <i class="ri-twitter-fill"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a target="_blank" href="@Model.InstagramUserName">
+                                <i class="ri-instagram-line"></i>
+                            </a>
+                        </li>
+                    
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="contact-form">
+                    <form class="form-wrap" action="/Home/InsertFaq" method="post" id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" placeholder="نام*" id="name" required data-error="لطفا نام خود را وارد کنید">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" name="email" id="email" required placeholder="ایمیل*" data-error="لطفا ایمیل خود را وارد کنید">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" name="msg_subject" placeholder="موضوع*" id="msg_subject" required data-error="لطفا موضوع خود را وارد کنید">
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group v1">
+                                    <textarea name="message" id="message" placeholder="پیام شما.." cols="30" rows="10" required data-error="لطفا پیام خود را بنویسید"></textarea>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check checkbox">
+                                    <input name="gridCheck" value="من با شرایط و سیاست حفظ حریم خصوصی موافقم." class="form-check-input" type="checkbox" id="gridCheck" required>
+                                    <label class="form-check-label" for="gridCheck">
+                                        من می پذیرم <a class="link style1" href="terms-of-service.html">قوانین و ضوابط</a> و <a class="link style1" href="privacy-policy.html">حریم خصوصی</a>
+                                    </label>
+                                    <div class="help-block with-errors gridCheck-error"></div>
+                                </div>
+                            </div>   <input type="submit" value="ارسال" class="btn style2">
+                            <div class="col-md-12">
+                             
+                                <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+                            
+@section Scripts
+{
+    <script>
+        let model = @Json.Serialize(Model)
+
+            const script = document.createElement('script');
+            script.setAttribute('type', 'application/ld+json');
+
+        script.textContent = '{"@@context": "https://schema.org","@@type": "ContactPage","name": "' + model["title"] + ' درباره","description": "' + model["desc"] + '" }';
+            document.head.appendChild(script);
+
+
+    </script>
+
+}

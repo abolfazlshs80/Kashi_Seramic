@@ -1,0 +1,38 @@
+﻿@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.Setting
+@model IEnumerable<Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.FaqUser.FaqUserVM>
+@{
+    var setting = ViewBag.setting as SettingVM;
+    ViewBag.pageType = "website";
+    ViewBag.TitleBrowser = setting.Title + "-" + ViewBag.Title;
+    ViewBag.keywords = "  پرسش‌های رایج,  راهنمای سوالات متداول,  پاسخ‌های متداول,  فهرست سوالات مکرر,  پرسش‌های متداول مشتریان, پاسخ‌های رایج به سوالات,    سوالات متداول و پاسخ‌ها,  راهنمای پرسش‌های مکرر, پرسش‌های پرتکرار و پاسخ‌ها";ViewBag.author = setting.OwnerName;
+    ViewBag.description = "صفحه سوالات متداول یک صفحه وب است که شامل پرسش‌ها و پاسخ‌های متداول در مورد یک موضوع یا خدمات خاص می‌شود. هدف اصلی این صفحه ارائه اطلاعات و راهنمایی به کاربران است تا سوالات رایج خود را پیدا کنند و به سرعت پاسخ‌های موردنیاز خود را دریافت کنند.";
+    ViewBag.robot = "index,follow";
+    ViewBag.socialmedia = true;
+    ViewBag.link = setting.SitePath+"/faq";
+    ViewBag.imageurl = setting.SitePath + "/Kashi_Seramic_Theme/assets/img/favicon.png";
+    ViewBag.username = setting.InstagramUserName;
+    Layout = "_Layout";
+}
+@await Component.InvokeAsync("FaqMainComponents")
+
+
+
+@section Scripts
+{
+
+    <script>
+
+        var script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        var model = @Json.Serialize(Model);
+            script.textContent = '{"@@context": "https://schema.org",  "@@type": "FAQPage", "mainEntity": [ ';
+        for (var i = 0; i < model.length; i++) {
+            if (i != 0) { script.textContent =script.textContent + ','; }
+
+            script.textContent = script.textContent + '{"@@type": "Question", "name": "' + model[i]["text"] + '", "acceptedAnswer": {"@@type": "Answer", "text": "'+model[i]["replayText"] + '" }}';
+        }
+        script.textContent = script.textContent + ']}';
+        document.head.appendChild(script);
+
+    </script>
+}

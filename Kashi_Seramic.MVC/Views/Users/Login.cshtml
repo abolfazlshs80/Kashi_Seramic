@@ -1,0 +1,19 @@
+﻿@model Pr_Signal_ir.MVC.Models.LoginVM
+
+@{
+   
+}
+@section Scripts
+{
+    <script>
+        $(function () {
+
+            // نمایش مودال خطا در صورتی که پیام خطا وجود داشته باشد
+
+                    $("#signIn").modal("show");
+                    function showerror(status){
+                    console.log(status)
+                    }
+        });
+    </script>
+}

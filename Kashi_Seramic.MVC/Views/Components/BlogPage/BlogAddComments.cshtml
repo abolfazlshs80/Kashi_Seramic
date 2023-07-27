@@ -1,0 +1,55 @@
+﻿
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.CommentToBlog.CreateCommentToBlogVM
+
+
+    <div id="cmt-form">
+        <div class="comment-box-title mb-25">
+            <h4 id="Add_Comment_Title">نظر بدهید</h4>
+            <p>آدرس ایمیل شما منتشر نخواهد شد. فیلدهای الزامی مشخص شده اند.</p>
+        </div>
+        <form action="/Comment/AddComment@(ViewBag.type)" method="post" class="comment-form">
+
+        <input type="hidden" name="Model.BlogId" value="@ViewBag.blogid" />
+        <input type="hidden" id="CommentSubId" name="Model.CommentSubId" value="0" />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <input type="text" name="Model.FullName" id="name" required
+                               placeholder="نام*">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <input type="email" name="Model.Email" id="email" required
+                               placeholder="آدرس ایمیل*">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <input type="url" name="Model.WebSite" id="website" placeholder="وبسایت">
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <textarea name="Model.Text" id="messages" cols="30" rows="10"
+                                                  placeholder="لطفا نظر خود را در اینجا وارد کنید"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="form-check checkbox">
+                        <input class="form-check-input" type="checkbox" id="test_2">
+                        <label class="form-check-label" for="test_2">
+                            برای دفعه بعد که نظر می دهم نام، ایمیل، آدرس وب سایت من را در
+                            این مرورگر ذخیره کنید.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-20">
+                    <button class="btn style2">ارسال یک نظر</button>
+                </div>
+            </div>
+        </form>
+    </div>

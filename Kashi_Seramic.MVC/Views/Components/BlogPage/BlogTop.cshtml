@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BlogVM>
+
+<div class="sidebar-widget popular-post">
+    <h4>پست های محبوب</h4>
+    <div class="popular-post-widget">
+        @foreach (var blog in Model)
+        {
+            <div class="pp-post-item">
+                <a href="blog-details-right-sidebar.html" class="pp-post-img">
+                    <img src="@blog.FileToBlog?.FirstOrDefault()?.FileManager.Path.SetForBlogUrl()" alt="@blog.TitleBrowser">
+                </a>
+                <div class="pp-post-info">
+                    <span><i class="flaticon-calendar"></i>01 دی 1401</span>
+                    <h6>
+                        <a href="/Blog/@blog.Id/@blog.ShortTitle.SetForUrl()">
+                     @blog.ShortTitle
+                        </a>
+                    </h6>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>

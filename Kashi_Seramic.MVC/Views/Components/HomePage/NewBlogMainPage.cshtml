@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BlogVM>
+<section class="property-wrap ptb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
+                <div class="section-title style1 text-center mb-40">
+                    <h2>آخرین لیست مقاله ها</h2>
+                    <p>
+                        لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال
+                        استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم
+                        ایپسوم به مدت 40 سال استاندارد صنعت بوده است.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="property-slider-two owl-carousel">
+            
+            @foreach (var blog in Model ??new List<BlogVM>() )
+            {
+                <div class="property-card style4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+                    <div class="property-img">
+                        <img src="@blog.FileToBlog?.FirstOrDefault()?.FileManager?.Path.SetForBlogUrl()" alt="@blog.LongTitle">
+                        <span class="property-status">برای خواندن</span>
+                    </div>
+                    <div class="property-info">
+                        <h3><a href="/Blog/@blog.Id/@blog.TitleBrowser.SetForUrl()">@blog.ShortTitle</a></h3>
+                   
+                    </div>
+                </div>
+
+            }
+         
+        </div>
+    </div>
+</section>

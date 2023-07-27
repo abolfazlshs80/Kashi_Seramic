@@ -1,0 +1,91 @@
+﻿@using Pr_Signal_ir.MVC.Models;
+@{
+    ViewBag.title = " نمایش اطلاعات کاربر";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین ,بیوتی ,,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین ";
+    ViewBag.description = "-با میدیریت  من  ام البنبن  هستم  و برند  بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model EmployeeVM
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header text-end" dir="rtl">
+            <h3 class="card-title ">اطلاعات حساب کاربری</h3>
+        </div>
+        <div class="card-body" dir="rtl">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="expanel expanel-default text-end">
+                        <div class="expanel-heading">شماره همراه</div>
+                        <div class="expanel-body">
+                            @if (!string.IsNullOrWhiteSpace(Model.PhoneNumber))
+                            {
+                                @Model.PhoneNumber
+                            }
+                            else
+                            {
+                                <p>تعریف نشده</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="expanel expanel-default text-end">
+                        <div class="expanel-heading">
+                            <h3 class="expanel-title">نام کاربری</h3>
+                        </div>
+                        <div class="expanel-body">
+                            @if (!string.IsNullOrWhiteSpace(Model.Username))
+                            {
+                                @Model.Username
+                            }
+                            else
+                            {
+                                <p>تعریف نشده</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="expanel expanel-default text-end">
+                        <div class="expanel-heading">نام کامل</div>
+                        <div class="expanel-body text-end">
+                            @if (!string.IsNullOrWhiteSpace(Model.Firstname) && !string.IsNullOrWhiteSpace(Model.Lastname))
+                            {
+                                @(Model.Firstname + " " + Model.Lastname)
+                            }
+                            else
+                            {
+                                <p>تعریف نشده</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="expanel expanel-default text-end">
+                        <div class="expanel-heading">
+                            <h3 class="expanel-title">ایمیل</h3>
+                        </div>
+                        <div class="expanel-body">
+                            @if (!string.IsNullOrWhiteSpace(Model.Email))
+                            {
+                                @Model.Email
+                            }
+                            else
+                            {
+                                <p>تعریف نشده</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Kashi_Seramic.MVC.Models.Slider.SliderVM>
+
+
+<section class="hero-wrap style2 py-5">
+    <div class="container-fluid">
+        <div class="client-feedback">
+            <ul class="list-style">
+                @foreach (var slide in Model)
+                {
+                    <li><a href="/"><img src="@slide.PathImage.SetForSliderUrl()" alt="@slide.Title"></a></li>
+                }
+
+
+            </ul>
+            <span>29k بررسی مثبت</span>
+        </div>
+        <div class="hero-slider-one owl-carousel">
+            @{
+                int i = 1;
+            }
+            @foreach (var slide in Model)
+            {
+                <div class="hero-slide-item hero-slide-@(i) bg-f">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-8 col-sm-10">
+                                <div class="hero-content">
+                                    @Html.Raw(slide.Text)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <p class="d-none">@(i++)</p>
+
+            }
+
+
+        </div>
+    </div>
+</section>

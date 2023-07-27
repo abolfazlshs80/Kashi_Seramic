@@ -1,0 +1,39 @@
+﻿@model Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.Setting.SettingVM
+
+@{
+    ViewBag.pageType = "website";
+    ViewBag.TitleBrowser = Model.TitleDesc +"-"+ViewBag.Title;
+    ViewBag.keywords = "فروش کاشی,    شرکت کاشی,    درباره ما,    تاریخچه کاشی,   اهداف فروشگاه کاشی,      معرفی تیم کاشی,  تخصص‌های کاشی,  نقاط قوت کاشی فروشگاه,   کاشی‌های باکیفیت,  تنوع کاشی‌ها";
+    ViewBag.author = Model.OwnerName;
+    ViewBag.description = "شرکت یا فروشگاه کاشی با تجربه‌ای بیش از چند دهه در زمینه تولید و توزیع کاشی‌های با کیفیت در بازار فعالیت دارد. از آغاز فعالیت، این شرکت به عنوان یکی از پیشروان صنعت کاشی در منطقه شناخته می‌شود و به دلیل کیفیت بالا و طرح‌های منحصر به فرد خود، محبوبیت بسیاری را به دست آورده است.";
+    ViewBag.robot = "index,follow";
+    ViewBag.socialmedia = true;
+    ViewBag.link = Model.SitePath+"/about";
+    ViewBag.imageurl = Model.SitePath+"/Kashi_Seramic_Theme/assets/img/favicon.png";
+    ViewBag.username = Model.InstagramUserName;
+    Layout = "_Layout";
+}
+
+<section class="contact-us-wrap ptb-100">
+    <div class="container">
+        @Html.Raw(Model.AboutText)
+
+    </div>
+</section>
+
+
+@section Scripts
+{
+    <script>
+        let model = @Json.Serialize(Model)
+
+            const script = document.createElement('script');
+            script.setAttribute('type', 'application/ld+json');
+
+            script.textContent = '{"@@context": "https://schema.org","@@type": "AboutPage","name": "' + model["title"] + '","description": "' + model["desc"] + '" }';
+            document.head.appendChild(script);
+
+
+    </script>
+
+}

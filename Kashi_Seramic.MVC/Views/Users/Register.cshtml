@@ -1,0 +1,29 @@
+﻿@model Pr_Signal_ir.MVC.Models.RegisterVM
+
+@{
+
+}
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+@section Scripts
+    {
+    <script>
+        $(function () {
+
+            // نمایش مودال خطا در صورتی که پیام خطا وجود داشته باشد
+
+            $("#signUp").modal("show");
+            function runError(status) {
+                $("#MsgErr").text("status");
+            }
+        });
+    </script>
+}

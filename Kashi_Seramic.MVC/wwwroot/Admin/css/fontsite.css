@@ -1,0 +1,25 @@
+﻿
+@font-face {
+    font-family: 'yekan';
+    src: url('/font/yekan/Yekan.eot');
+    src: url('/font/yekan/Yekan.eot') format('embedded-opentype'), url('/font/yekan/Yekan.woff') format('woff'), url('/font/yekan/Yekan.ttf') format('truetype'); font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'iransans';
+    src: url('/font/titr/titr.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'titr';
+    src: url('/font/titr/titr.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'iransans';
+    src: url('/font/iransans/IranianSans.ttf');
+    font-weight: normal;
+    font-style: normal;
+}

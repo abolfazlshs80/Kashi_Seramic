@@ -1,0 +1,89 @@
+﻿@using Pr_Signal_ir.MVC.Models.FilterProduct
+@using Pr_Signal_ir.MVC.Models.FilterToProduct
+@model ProductVM
+@{
+    ViewBag.pageType = "Product";
+    ViewBag.TitleBrowser = Model.TitleInBrowser + "-" + ViewBag.Title;
+    ViewBag.keywords = string.Join(',', Model.TagToProduct);
+    ViewBag.author = Model.CreatedBy;
+    ViewBag.description = Model.Text;
+    ViewBag.robot = "index,follow";
+    ViewBag.socialmedia = true;
+    ViewBag.link = Model.Setting.SitePath + "/product/" + Model.Id + "/" + Model.TitleInBrowser.SetForUrl();
+    ViewBag.imageurl = Model.Setting.SitePath + Model?.FileToProduct?.FirstOrDefault()?.FileManager?.Path?.SetForProductUrl();
+    ViewBag.username = Model.Setting.InstagramUserName;
+    Layout = "_Layout";
+}
+@{
+    ViewBag.type = "Product";
+    ViewBag.blogid = Model.Id;
+}
+
+<div class="blog-details-wrap ptb-100">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-xl-4 col-lg-12 order-xl-1 order-lg-2 order-md-2 order-2">
+                <div class="sidebar">
+                    @await Component.InvokeAsync("BlogSearchComponents")
+                    @await Component.InvokeAsync("BlogCategoryComponents")
+                    @await Component.InvokeAsync("ProductTopComponents")
+                    @await Component.InvokeAsync("BlogTagComponents")
+                    @await Component.InvokeAsync("FilterProductComponents")
+                    @if (Model.Qountity > 0)
+                    {
+                        <a data-bs-target="#SuucessAddCardModal" data-bs-toggle="modal" class="btn style1 w-100">ثبت نام در  دوره</a>
+                    }
+
+
+                </div>
+            </div>
+            <div class="col-xl-8 col-lg-12 order-xl-2 order-lg-1 order-md-1 order-1">
+                <article>
+                    <div class="post-img">
+                        <img id="Imgback" src="@Model.FileToProduct?.FirstOrDefault()?.FileManager?.Path?.SetForProductBackUrl()" alt="@Model.TitleInBrowser">
+                    </div>
+                    <ul class="post-metainfo  list-style">
+                        <li>
+                            <i class="flaticon-calendar"></i><a href="posts-by-date.html">@Model.LastModifiedDate?.ConvertDateToPersion()</a>
+                        </li>
+                        <li>
+                            <i class="flaticon-chat-comment-oval-speech-bubble-with-text-lines"></i>@Model.CommentToProduct.Count() نظر
+                        </li>
+                    </ul>
+                    <h2>@Model.TitleInBrowser</h2>
+                    <div class="post-para">
+                        @Html.Raw(Model.Text)
+                    </div>
+                </article>
+
+                <div class="comment-box-wrap">
+                    <div class="comment-box-title mb-30">
+                        <h4><span>@Model.CommentToProduct.Count()</span> نظر</h4>
+                    </div>
+                    @await Component.InvokeAsync("BlogShowCommentsComponents")
+                    @await Component.InvokeAsync("ProductAddCommentsComponents")
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts
+{
+    <script>
+       var model=@(Json.Serialize(Model))
+       var imgSource=document.querySelector("#Imgback").getAttribute("src");
+        const script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        script.textContent =  '    {   "@@context": "https://schema.org/",    "@@type": "Product",    "name": "'+model["title"]+'",    "image": [       "' +model["setting"]["sitePath"]+imgSource + '"   ],   "description": "",    '+model["text"]+'       "sku": "'+model["setting"]["phone1"]+'",              "mpn": "'+model["id"]+'",              "brand": {                "@@type": "Brand",                "name": "'+model["setting"]["title"]+'"              },              "review": {                "@@type": "Review",                "reviewRating": {                  "@@type": "Rating",                  "ratingValue": 4,                  "bestRating": 5                },                "author": {                  "@@type": "Person",                    "name": "'+model["createdBy"]+'"  }  },  "aggregateRating": { "@@type": "AggregateRating",  "ratingValue": 4.4,  "reviewCount": 89}, "offers": {   "@@type": "AggregateOffer",  "offerCount": 5, "lowPrice": '+model["offPrice"]+', "highPrice": '+model["price"]+', "priceCurrency": "IR" } }';
+        document.head.appendChild(script);
+
+
+    </script>
+}

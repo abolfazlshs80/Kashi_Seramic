@@ -1,0 +1,98 @@
+﻿@using Pr_Signal_ir.MVC.Models.Pr_Signal_ir.MVC.Models.Menu;
+
+
+@model MenuListVM
+
+<header class="header-wrap">
+    <div id="firstmenu" class=" flex-column align-self-center w-100">
+
+        <a href="#" rel="nofollow" class="float-end mt-2 mr_1 ">
+
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="24" height="24" x="0" y="0" viewBox="0 0 513.64 513.64" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="m499.66 376.96-71.68-71.68c-25.6-25.6-69.12-15.359-79.36 17.92-7.68 23.041-33.28 35.841-56.32 30.72-51.2-12.8-120.32-79.36-133.12-133.12-7.68-23.041 7.68-48.641 30.72-56.32 33.28-10.24 43.52-53.76 17.92-79.36l-71.68-71.68c-20.48-17.92-51.2-17.92-69.12 0L18.38 62.08c-48.64 51.2 5.12 186.88 125.44 307.2s256 176.641 307.2 125.44l48.64-48.64c17.921-20.48 17.921-51.2 0-69.12z" fill="#ffffff" data-original="#000000" class=""></path></g></svg>
+        </a>
+        <a href="#" rel="nofollow" class="float-end mt-2  ">,@Model.Setting.Phone1</a>
+        <a href="#" rel="nofollow" class="float-end mt-2">@Model.Setting.Phone2</a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#SearchbarModal" id="searchFirstMenu" class="float-start mt-2 ">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="24" height="24" x="0" y="0" viewBox="0 0 118.783 118.783" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M115.97 101.597 88.661 74.286a47.75 47.75 0 0 0 7.333-25.488c0-26.509-21.49-47.996-47.998-47.996S0 22.289 0 48.798c0 26.51 21.487 47.995 47.996 47.995a47.776 47.776 0 0 0 27.414-8.605l26.984 26.986a9.574 9.574 0 0 0 6.788 2.806 9.58 9.58 0 0 0 6.791-2.806 9.602 9.602 0 0 0-.003-13.577zM47.996 81.243c-17.917 0-32.443-14.525-32.443-32.443s14.526-32.444 32.443-32.444c17.918 0 32.443 14.526 32.443 32.444S65.914 81.243 47.996 81.243z" fill="#ffffff" data-original="#000000"></path></g></svg>
+        </a>
+        <a href="/Home/AboutUs" rel="nofollow" class="float-start mt-2">تماس با ما</a>
+
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light">
+            <a class="navbar-brand" href="/">
+                <img class="logo-light" src="/Images/Site/logo.png" alt="سایت فروش کاشی">
+                @*<img class="logo-dark" src="/Kashi_Seramic_Theme/assets/img/logo-white.png" alt="logo">*@
+            </a>
+            <div class="collapse navbar-collapse main-menu-wrap" id="navbarSupportedContent">
+                <div class="menu-close d-lg-none">
+                    <a href="javascript:void(0)"> <i class="ri-close-line"></i></a>
+                </div>
+                <ul class="navbar-nav ms-auto">
+
+                    @foreach (var menu in Model.Menu)
+                    {
+                        if (menu.StatusInMainMenu)
+                        {
+                            <li class="nav-item">
+                                <a href="@menu.Href" class="nav-link ">
+                                    @menu.Title
+                                    <i class="@menu.Icons"></i>
+                                </a>
+
+                            </li>
+                        }
+                     
+
+
+                    }
+
+
+                </ul>
+
+                <div class="others-options  md-none">
+                    <div class="header-btn">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <button type="button" class="btn style3" data-bs-toggle="modal"
+                                data-bs-target="#signIn">
+                                ورود
+                            </button>
+                            <button type="button" class="btn style1" data-bs-toggle="modal"
+                                data-bs-target="#signUp">
+                                ثبت نام
+                            </button>
+                        }
+                        else
+                        {
+                            string panel = User.IsInRole("Administrator") ? "پنل ادمین" : "حساب کاربری";
+                            string url = User.IsInRole("Administrator") ? "/admin" : "/user/user/index";
+                            <a href="@url" class="btn style1">
+                                @panel
+                            </a>
+                            <a href="/Logout" type="button" class="btn style3">
+                                خروج
+                            </a>
+                        }
+                        <div class="dropdown d-sm-block d-lg-block  d-md-none  float-end m-0  d-flex shopping-cart" dir="rtl" style="">
+                            <a title="" class="nav-link icon text-end " onclick="showcard()" id="showcardbutton" data-bs-toggle="dropdown">
+                                <span class="badge bg-secondary header-badge showcountcard">0</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="48" height="48" x="0" y="0" viewBox="0 0 512 511" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path fill="#697c86" d="M195.031 450.57c-24.82 0-45.008-20.191-45.008-45.007 0-24.82 20.188-45.008 45.008-45.008 24.817 0 45.004 20.187 45.004 45.007 0 24.817-20.187 45.008-45.004 45.008zm0 0" data-original="#697c86" class=""></path><path fill="#465a61" d="M195.031 420.563c-8.277 0-15.004-6.723-15.004-15s6.727-15.004 15.004-15.004 15 6.726 15 15.003-6.722 15-15 15zm0 0" data-original="#465a61" class=""></path><path fill="#596c76" d="M407.063 450.57c-24.817 0-45.008-20.191-45.008-45.007 0-24.82 20.191-45.008 45.007-45.008s45.008 20.187 45.008 45.007c0 24.817-20.191 45.008-45.007 45.008zm0 0" data-original="#596c76"></path><path fill="#3b4a51" d="M407.063 420.563c-8.278 0-15.004-6.723-15.004-15s6.726-15.004 15.003-15.004 15 6.726 15 15.003-6.722 15-15 15zm0 0" data-original="#3b4a51"></path><path fill="#465a61" d="M454.469 345.55c0 8.403-6.602 15.005-15 15.005H152.426c-24.906 0-45.008-20.106-45.008-45.008 0-22.8 16.8-41.707 39.004-44.406 1.8-.602 3.902-.602 6.004-.602 3.597 0 7.199 1.504 9.601 3.902l-9.004 26.106h-.597c-8.403 0-15.004 6.598-15.004 15s6.601 15.004 15.004 15.004h287.043c8.398 0 15 6.597 15 15zM99.563 60.543c.953 1.2 17.109 8.496 33.374 15.64.06-1.292.223-2.574-.07-3.894l-13.199-60.012A14.99 14.99 0 0 0 105.016.5H15.004C6.71.5 0 7.21 0 15.504c0 8.289 6.71 15 15.004 15h77.953zm0 0" data-original="#465a61" class=""></path><path fill="#3b4a51" d="M454.469 345.55c0 8.403-6.602 15.005-15 15.005H298.344V330.55h141.125c8.398 0 15 6.597 15 15zm0 0" data-original="#3b4a51"></path><path fill="#5f31fd" d="M509.078 66.512c-3-3.903-7.203-6.004-12.004-6.004H99.614l46.808 210.633 6.601 29.406h284.043c6.602 0 12.602-4.504 14.403-10.805l60.008-210.031c1.203-4.5.3-9.602-2.399-13.2zm0 0" data-original="#fdbf00" class="" opacity="1"></path><path fill="#3a00fd" d="m511.477 79.71-60.008 210.032c-1.801 6.301-7.801 10.805-14.403 10.805H298.344V60.507h198.73c4.801 0 9.004 2.102 12.004 6.005 2.7 3.597 3.602 8.699 2.399 13.199zm0 0" data-original="#ff9f00" class="" opacity="1"></path></g></svg>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow" id="cardbody" data-bs-popper="block">
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="mobile-bar-wrap">
+            <div class="mobile-menu d-lg-none">
+                <a href="javascript:void(0)"><i class="ri-menu-line"></i></a>
+            </div>
+        </div>
+    </div>
+</header>
+

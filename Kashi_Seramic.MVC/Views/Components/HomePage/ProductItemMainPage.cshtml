@@ -1,0 +1,46 @@
+﻿@using System.Collections
+
+@model IEnumerable<ProductVM>
+<section class="property-slider-wrap pt-100 pb-75">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
+                <div class="section-title style1 text-center mb-40">
+                    <h2>@ViewBag.Title</h2>
+                    <p>
+                        @ViewBag.Descrition
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            @foreach (var product in Model??new List<ProductVM>())
+            {
+            <div class="col-xl-4 col-lg-6 col-md-6" data-aos="fade-up" data-aos-duration="1200"
+                 data-aos-delay="200">
+                <div class="property-card style3">
+                    <div class="property-img">
+                        <img src="@product.FileToProduct.FirstOrDefault()?.FileManager?.Path.SetForProductUrl()" style="width: 100%;" alt="@product.TitleInBrowser">
+                        <span class="property-status">برای خرید</span>
+                        <span class="property-condo">جدید</span>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-status-wrap">
+                            <span class="property-state"><i class="flaticon-home"></i>@product.CategoryToProduct?.FirstOrDefault()?.Category?.Name</span>
+                            <p class="property-price">@product.Price تومان/</p>
+                        </div>
+                        <h3><a href="/Product/@product.Id/@product.Title.SetForUrl()"> @product.Title</a></h3>
+
+
+                    </div>
+                </div>
+            </div>
+
+            }
+
+
+
+
+        </div>
+    </div>
+</section>

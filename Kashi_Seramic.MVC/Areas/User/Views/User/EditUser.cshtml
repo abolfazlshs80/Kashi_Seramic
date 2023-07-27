@@ -1,0 +1,110 @@
+﻿@using Pr_Signal_ir.MVC.Models;
+@{
+    ViewBag.title = " ویرایش اطلاعات کاربری";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین ,بیوتی ,,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین ";
+    ViewBag.description = "-با میدیریت  من  ام البنبن  هستم  و برند  بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model EmployeeVM
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card " dir="rtl">
+                @Html.ValidationSummary()
+                <form action="/User/User/ChnagePassword" method="post">
+                    <div class="card-header ">
+                        <div class="card-title text-end"> ویرایش گذرواژه</div>
+
+
+
+                    </div>
+                    <div class="card-body" dir="rtl">
+                        <div class="text-center chat-image mb-5">
+                        </div>
+
+                        <div class="form-group text-end">
+                            <label class="form-label">کلمه عبور جدید</label>
+                            <div class="wrap-input100 validate-input input-group" id="Password-toggle1">
+                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                    <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
+                                </a>
+                                <input class="input100 form-control" name="newPassword" type="password" placeholder="کلمه عبور جدید" autocomplete="new-password" value="">
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer text-end">
+                        <input type="submit" value="بروزرسانی" class="btn btn-primary">
+                        <input type="hidden" name="Model.Id" value="@Model.Id" />
+                        <a href="/User/Manage/EditUser" class="btn btn-danger">انصراف</a>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Edit Profile</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/User/User/EditUser" method="post">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group text-end">
+                                    <label for="exampleInputname"> نام</label>
+                                    <input type="text" name="Model.Firstname" value="@Model.Firstname" class="form-control text-end" id="exampleInputname" placeholder=" نام">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="form-group text-end">
+                                    <label for="exampleInputname1">نام خانوادگی</label>
+                                    <input type="text" class="form-control text-end" name="Model.Lastname" value="@Model.Lastname"  placeholder="نام خانوادگی">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-end">
+                            <label for="exampleInputEmail1">ایمیل</label>
+                            <input type="email" class="form-control text-end" name="Model.Email" value="@Model.Email" id="exampleInputEmail1" placeholder="ایمیل">
+                        </div>
+                        <div class="form-group text-end">
+                            <label for="exampleInputEmail1">نام کاربری</label>
+                            <input type="text" class="form-control text-end" name="Model.Username" value="@Model.Username" id="exampleInputEmail1" placeholder="ایمیل">
+                        </div>
+                        <div class="form-group text-end">
+                            <label for="exampleInputnumber">شماره تماس</label>
+                            <input type="number" readonly class="form-control text-end" name="Model.PhoneNumber" id="exampleInputnumber" value="@Model.PhoneNumber" placeholder="Contact number">
+                        </div>
+
+
+                        <div class="card-footer text-end">
+                            <input type="hidden" name="Model.Id" value="@Model.Id" />
+                            <input type="submit" class="btn btn-success my-1" value="ذخیره">
+                            <a href="/User/Manage/EditUser" class="btn btn-danger my-1">انصراف</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector("#chdeleted").addEventListener("change", (e) => {
+        console.log(e.target);
+        console.log(e)
+    });
+</script>

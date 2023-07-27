@@ -1,0 +1,137 @@
+﻿@using SignalWebsite_RazorPage.Core.ViewModel
+@model ShowCardVM
+@{
+    Layout = null;
+}
+<div class="drop-heading border-bottom">
+    <div class="d-flex">
+        <h6 class="mt-1 mb-0 fs-16 fw-semibold text-dark">سبد خرید من</h6>
+        <div class="ms-auto">
+            <span class="badge bg-danger-transparent header-badge text-danger fs-14"></span>
+        </div>
+    </div>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="header-dropdown-list message-menu text-end">
+        @if (Model.Order?.orderDetails != null)
+        { @foreach (var item in Model.Order.orderDetails)
+            {
+                <div class="dropdown-item d-flex p-4">
+                    <a href="cart.html" class="open-file"></a>
+                    <img class="avatar avatar-xl br-5 me-3 align-self-center cover-image" width="25"
+             src="@(item.Product.FileToProduct.FirstOrDefault()?.FileManager.Path.SetForProductUrl())" />
+                    <div class="wd-50p mx-3">
+                        <h5 class="mb-1">@item.Product.Title</h5>
+                        <p class="fs-13 text-muted text-start mb-0">تعداد: @item.Count</p>
+                        <input type="hidden" id="countCard" value="@Model.Order.orderDetails.Count()">
+                    </div>
+                    <div class="ms-auto text-end d-flex fs-16">
+                        <span class="fs-16 text-dark d-none d-sm-block px-4">
+                            @{
+                                var price = ((item.Product.OffPrice.ConvertToInt().Equals(0) ? item.Product.Price : item.Product.OffPrice) * (item.Count)).ConvertToInt();
+                      
+                            }
+                            @(price)
+                        </span>
+                        <a onclick="DeleteCard(@item.Id)" class="fs-16 btn p-0 cart-trash">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="24" height="24" x="0" y="0" viewBox="0 0 408.483 408.483" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M87.748 388.784c.461 11.01 9.521 19.699 20.539 19.699h191.911c11.018 0 20.078-8.689 20.539-19.699l13.705-289.316H74.043l13.705 289.316zm159.907-217.455a8.35 8.35 0 0 1 8.35-8.349h13.355a8.351 8.351 0 0 1 8.35 8.349v165.293a8.35 8.35 0 0 1-8.35 8.349h-13.355a8.35 8.35 0 0 1-8.35-8.349V171.329zm-58.439 0a8.35 8.35 0 0 1 8.349-8.349h13.355a8.35 8.35 0 0 1 8.349 8.349v165.293a8.348 8.348 0 0 1-8.349 8.349h-13.355a8.348 8.348 0 0 1-8.349-8.349V171.329zm-58.441 0a8.35 8.35 0 0 1 8.349-8.349h13.356a8.35 8.35 0 0 1 8.349 8.349v165.293a8.349 8.349 0 0 1-8.349 8.349h-13.356a8.348 8.348 0 0 1-8.349-8.349V171.329zM343.567 21.043h-88.535V4.305A4.305 4.305 0 0 0 250.727 0h-92.971a4.305 4.305 0 0 0-4.304 4.305v16.737H64.916c-7.125 0-12.9 5.776-12.9 12.901V74.47h304.451V33.944c0-7.125-5.775-12.901-12.9-12.901z" fill="#ed1b03" data-original="#000000" opacity="1" class=""></path></g></svg>
+
+                        </a>
+                  
+                    </div>
+                </div>
+
+            }           }
+
+
+
+
+    </div>
+    <div class="dropdown-divider m-0"></div>
+    <div class="dropdown-footer  text-center">
+        <span class="float-end p-2 fs-17 fw-semibold">قیمت کل: @Model.OrdersDetails.Sum(a=>a.Price) </span>
+        <a class="btn btn-primary  btn-pill w-sm btn-sm py-2" href="/Order/CheckOut"><i class="fe fe-check-circle"></i> تسویه حساب</a>
+
+    </div>
+    @if (Model.OrdersDetails.Count() < 1)
+    {
+        <input type="hidden" id="countCard" value="0">
+        <p>سبد خرید خالی است</p>
+    }
+
+}
+
+
+
+
+
+else
+{
+
+
+
+    <div class="header-dropdown-list message-menu text-end">
+
+        @foreach (var item in Model.ShowCardNouser.CartItems)
+        {
+            <div class="dropdown-item d-flex p-4">
+                <a href="cart.html" class="open-file"></a>
+                <img class="avatar avatar-xl br-5 me-3 align-self-center cover-image"
+                     src="@(item.Item.FileToProduct.FirstOrDefault()?.FileManager.Path.SetForProductUrl())" width="25" />
+                <div class="wd-50p mx-3">
+                    <h5 class="mb-1">@item.Item.Title</h5>
+                    <p class="fs-13 text-muted  text-start mb-0">تعداد: @item.Quantity</p>
+                    <input type="hidden" id="countCard" value="@(Model.ShowCardNouser.CartItems.Count)">
+                </div>
+                <div class="ms-auto text-end d-flex fs-16">
+                    <span class="fs-16 text-dark d-none d-sm-block px-4">
+                      @{
+                            var price = ((item.Item.OffPrice.ConvertToInt().Equals(0) ? item.Item.Price : item.Item.OffPrice) * (item.Quantity)).ConvertToInt();
+                      
+                        }
+                        @(price)
+                    </span>
+                    <a onclick="DeleteCard(@item.Item.Id)" class="fs-16 btn p-0 cart-trash">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="24" height="24" x="0" y="0" viewBox="0 0 408.483 408.483" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M87.748 388.784c.461 11.01 9.521 19.699 20.539 19.699h191.911c11.018 0 20.078-8.689 20.539-19.699l13.705-289.316H74.043l13.705 289.316zm159.907-217.455a8.35 8.35 0 0 1 8.35-8.349h13.355a8.351 8.351 0 0 1 8.35 8.349v165.293a8.35 8.35 0 0 1-8.35 8.349h-13.355a8.35 8.35 0 0 1-8.35-8.349V171.329zm-58.439 0a8.35 8.35 0 0 1 8.349-8.349h13.355a8.35 8.35 0 0 1 8.349 8.349v165.293a8.348 8.348 0 0 1-8.349 8.349h-13.355a8.348 8.348 0 0 1-8.349-8.349V171.329zm-58.441 0a8.35 8.35 0 0 1 8.349-8.349h13.356a8.35 8.35 0 0 1 8.349 8.349v165.293a8.349 8.349 0 0 1-8.349 8.349h-13.356a8.348 8.348 0 0 1-8.349-8.349V171.329zM343.567 21.043h-88.535V4.305A4.305 4.305 0 0 0 250.727 0h-92.971a4.305 4.305 0 0 0-4.304 4.305v16.737H64.916c-7.125 0-12.9 5.776-12.9 12.901V74.47h304.451V33.944c0-7.125-5.775-12.901-12.9-12.901z" fill="#ed1b03" data-original="#000000" opacity="1" class=""></path></g></svg>
+
+                                </a>
+                </div>
+            </div>
+        }
+
+
+        @if (Model.ShowCardNouser.CartItems.Count() < 1)
+        {
+            <input type="hidden" id="countCard" value="0">
+            <p>سبد خرید خالی است</p>
+        }
+
+    </div>
+    <div class="dropdown-divider m-0"></div>
+    <div class="dropdown-footer  text-center mt-2">
+        <span class="float-end p-2 fs-17 fw-semibold">قیمت کل: @((Model.ShowCardNouser.CartItems.Sum(a => a.Item.Price * a.Quantity)).ConvertToInt()) </span>
+        <a class="btn btn-primary  btn-pill w-sm btn-sm py-2" href="/Order/Checkout"><i class="fe fe-check-circle"></i> تسویه حساب</a>
+
+    </div>
+}
+
+
+<script src="/assets/js/jquery.min.js"></script>
+
+<!-- BOOTSTRAP JS -->
+<script src="/assets/plugins/bootstrap/js/popper.min.js"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    function DeleteCard(id) {
+        console.log("hello");
+        $.get("/Order/DeleteCard?id=" + id
+            , function (resualt) {
+
+                $("#cardbody").html(resualt);
+                let count = document.querySelector("#countCard").getAttribute("value");
+                document.querySelector(".showcountcard").innerText = count;
+            });
+
+    }
+</script>

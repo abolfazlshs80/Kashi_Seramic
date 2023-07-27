@@ -1,0 +1,104 @@
+﻿@model Pr_Signal_ir.MVC.Models.CommentVM
+
+
+<div class="comment-item-wrap">
+    
+    @if (ViewBag.type == "Blog")
+    {
+        @foreach (var com in (Model.CommentToBlogVM))
+        {
+            <div class="comment-item @(com.CommentSubId!=0&com.CommentSubId!=null?"reply":"")">
+                <div class="comment-author-img">
+                    <img src="/Kashi_Seramic_Theme/assets/img/clients/client-4.jpg" alt="@com.FullName">
+                </div>
+                <div class="comment-author-wrap">
+                    <div class="comment-author-info">
+                        <div class="row align-items-start">
+                            <div class="col-md-9 col-sm-12 col-12 order-md-1 order-sm-1 order-1">
+                                <div class="comment-author-name">
+                                    <h5 id="username@(com.Id)">
+                                        @com.FullName
+                                        <span class="comment-date">
+                                            @com.LastModifiedDate?.ConvertDateToPersion()
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-12 text-md-end order-md-2 order-sm-3 order-3">
+                                <a ComId="@com.Id" href="#cmt-form" class="reply-btn">پاسخ دادن</a>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 order-md-3 order-sm-2 order-2">
+                                <div class="comment-text" id="text@(com.Id)">
+                                    @Html.Raw(com.Text)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        @foreach (var com in (Model.CommentToProductVM))
+        {
+            <div class="comment-item @(com.CommentSubId!=0&com.CommentSubId!=null?"reply":"")">
+                <div class="comment-author-img">
+                    <img src="/Kashi_Seramic_Theme/assets/img/clients/client-4.jpg" alt="@com.FullName">
+                </div>
+                <div class="comment-author-wrap">
+                    <div class="comment-author-info">
+                        <div class="row align-items-start">
+                            <div class="col-md-9 col-sm-12 col-12 order-md-1 order-sm-1 order-1">
+                                <div class="comment-author-name">
+                                    <h5 id="username@(com.Id)">
+                                        @com.FullName
+                                        <span class="comment-date">
+                                            @com.LastModifiedDate?.ConvertDateToPersion()
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-12 text-md-end order-md-2 order-sm-3 order-3">
+                                <a ComId="@com.Id" href="#cmt-form" class="reply-btn">پاسخ دادن</a>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12 order-md-3 order-sm-2 order-2">
+                                <div class="comment-text" id="text@(com.Id)">
+                                    @Html.Raw(com.Text)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+ 
+
+
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        var boxes = document.querySelectorAll(".reply-btn");
+        boxes.forEach(box => {
+            box.addEventListener("click", (e) => {
+            
+                var Id = e.target.getAttribute("ComId");
+                var username = (e.target.parentElement.parentElement.parentElement.querySelector("#username" + Id).textContent);
+                var text = (e.target.parentElement.parentElement.parentElement.querySelector("#text" + Id).textContent);
+
+
+  
+                document.querySelector("#CommentSubId").setAttribute("value", Id);
+    
+                document.querySelector("#Add_Comment_Title").textContent = "پاسخ نطر  " + username + ":" + text;
+            })
+        })
+
+    });
+
+
+
+</script>

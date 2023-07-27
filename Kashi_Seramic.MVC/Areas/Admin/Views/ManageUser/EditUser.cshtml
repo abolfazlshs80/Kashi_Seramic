@@ -1,0 +1,57 @@
+﻿
+@using Pr_Signal_ir.MVC.Models;
+@model EmployeeVM
+@{
+
+    ViewBag.title = "ویرایش کاربر";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+}
+<div class="col-md-12">
+    <h1>ویرایش کاربر</h1>
+
+    <form action="/Admin/ManageUser/EditUser" method="post">
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <div class=" row mt-5">
+
+            <input type="text" class="form-control col-md-9" id="username" name="@nameof(Model.Username)" value="@Model.Username" />
+            <label class="col-md-3" for="username">نام کاربری</label>
+        </div>
+        <div class=" row mt-5">
+
+            <input type="text" class="form-control col-md-9" id="email" name="@nameof(Model.Email)" value="@Model.Email" />
+            <label class="col-md-3" for="email">ایمیل</label>
+        </div>
+        <div class=" row mt-5">
+
+            <input type="text" class="form-control col-md-9" id="name" name="@nameof(Model.Firstname)" value="@Model.Firstname" />
+            <label class="col-md-3" for="name">نام  کامل</label>
+        </div>
+        <div class=" row mt-5">
+
+            <input type="text" class="form-control col-md-9" id="family" name="@nameof(Model.Lastname)" value="@Model.Lastname" />
+            <label class="col-md-3" for="family">فامیلی  کامل</label>
+        </div>
+    @*    <div class=" row mt-5">
+
+            <input type="text" class="form-control col-md-9" id="phone" name="@nameof(Model.PhoneNumber)" value="@Model.PhoneNumber" />
+            <label class="col-md-3" for="phone">تلفن  </label>
+        </div>*@
+        <div class=" row mt-5">
+
+            <input type="text" class="form-control col-md-9" id="username" name="pass" value="" />
+            <label class="col-md-3" for="username">کلمه عبور</label>
+        </div>
+        <input type="hidden" class="form-control" name="@nameof(Model.Id)" value="@Model.Id" />
+
+        <button class="btn btn-primary" type="submit">ثبت</button>
+    </form>
+</div>
+

@@ -1,0 +1,62 @@
+﻿@using Pr_Signal_ir.MVC.Models.Roles;
+
+@model AddRoleToUserVM
+@{
+    ViewData["Title"] = "AddUserToRole";
+    ViewBag.title = "اضافه کردن مقام به کاربر";
+    ViewBag.keywords = "آموزشکده آرایشگران,اموزشگاه آرایش,آرایشگر,نمونه کار,ام البنین صفری,بیوتی صفری,صفری,ساری,مازندران,مازندران ساری,ایران,آرایشگران ";
+    ViewBag.author = "ام البنین صفری";
+    ViewBag.description = "-با میدیریت صفری من  ام البنبن صفری هستم  و برند صفری بیوتی در اختیار من است آموزشگاه آرایشگری به صورت حضوری و مجازی برگزار میشود با مدرک فنی حرفه ای";
+    ViewBag.robot = "noindex,nofollow";
+    ViewBag.socialmedia = false;
+    ViewBag.link = "https://www.omolbininsafaribeauty.com";
+    ViewBag.imageurl = "https://www.omolbininsafaribeauty.com/";
+    ViewBag.username = "noosignalls";
+}
+
+<div class="col-md-12">
+    <h1>افزودن مقام به کاربر</h1>
+
+
+    @if (!Model.Roles.Any())
+    {
+        <h1>هیچ مقامی یافت نشد</h1>
+    }
+    else
+    {
+        @using (Html.BeginForm("AddUserToRole", "ManageUser", FormMethod.Post))
+        {
+            @foreach (var item in Model.Roles)
+            {
+                <div class="form-group">
+                    @if (item.Selected)
+                    {
+                        <input type="checkbox" name="@nameof(Model.MyRoles)" checked value="@item.RoleId" />
+
+                        <label>@item.RoleName</label>
+
+                    }
+                    else
+                    {
+                        <input type="checkbox" name="@nameof(Model.MyRoles)" value="@item.RoleId" />
+
+                        <label>@item.RoleName</label>
+                    }
+
+
+
+
+                    @*       <input type="hidden"  name="@(nameof(item.RoleName))" value="@item.RoleName" />*@
+                </div>
+            }
+
+
+            <input type="hidden" name="UserId" value="@Model.UserId" />
+            <input class="btn mybtncolor" type="submit" value="submit" />
+        }
+
+    }
+</div>
+
+
+

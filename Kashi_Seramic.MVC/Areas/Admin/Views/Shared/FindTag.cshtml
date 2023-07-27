@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Pr_Signal_ir.MVC.Models.Tag.TagVM>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <input value="@item.Id" type="checkbox" name="Model.TagId">
+
+    @item.Name
+    <br />
+}

@@ -1,0 +1,6 @@
+﻿User-agent: *
+Allow: /
+User-Agent:*
+Disallow:/Admin/
+User-Agent:*
+Disallow:/User/
