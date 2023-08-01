@@ -15,6 +15,10 @@ namespace Pr_Signal_ir.MVC.Contracts
         Task<IEnumerable<SearchVM>> GetProductsBySearchVM(string text);
         Task<List<SearchVM>> GetProductsCategoryBySearchVM(int cateid);
         Task<List<SearchVM>> GetProductsCategoryBySearchVM();
+        Task<List<SearchVM>> GetProductsCategoryByTag(string name);
+        Task<List<SearchVM>> GetProductsCategoryByFilter(string name);
+        Task<List<SearchVM>> GetProductsCategoryByCategory(string name);
+
         Task<Models.Pr_Signal_ir.MVC.Models.ProductVM> GetProductsDetails(int id);
         Task<Response<int>> CreateProduct(CreateProductVM leaveType);
         Task<Response<int>> UpdateProduct(int id, Models.Pr_Signal_ir.MVC.Models.UpdateProductVM leaveType);

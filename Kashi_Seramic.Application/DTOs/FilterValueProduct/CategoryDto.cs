@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Kashi_Seramic.Application.DTOs.FileToProduct;
 using Kashi_Seramic.Application.DTOs.FilterProduct;
 
 namespace Kashi_Seramic.Application.DTOs.FilterValueProduct
@@ -17,5 +18,6 @@ namespace Kashi_Seramic.Application.DTOs.FilterValueProduct
         public string Value { get; set; }
         public int FilterId { get; set; }
         public FilterProductDto FilterProduct { get; set; }
+        public IEnumerable<FilterToProductDto> FilterToProduct { get; set; }
     }
 }

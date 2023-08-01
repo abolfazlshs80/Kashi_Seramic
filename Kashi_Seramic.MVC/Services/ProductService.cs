@@ -15,6 +15,7 @@ using Pr_Signal_ir.Application.DTOs.Blog;
 using Kashi_Seramic.Application.Features.Product.Requests.Commands;
 using Kashi_Seramic.Application.Features.Product.Requests.Queries;
 using Kashi_Seramic.Application.DTOs.Product;
+using Kashi_Seramic.Application.Features.LeaveTypes.Requests.Queries;
 
 namespace Pr_Signal_ir.MVC.Services
 {
@@ -157,8 +158,10 @@ namespace Pr_Signal_ir.MVC.Services
                 Id = a.Id,
                 Type = "Product",
                 Product = _mapper.Map<ProductVM>(a),
-                path = a.FileToProduct?.FirstOrDefault()?.FileManager.Path
-            });
+                path = a.FileToProduct?.FirstOrDefault()?.FileManager?.Path?.SetForProductUrl(),
+                Url = $"/Product/{a.Id}/{a.TitleInBrowser.SetForUrl()}",
+
+          });
             if (string.IsNullOrEmpty(text))
             {
                 return model.Select(a => new SearchVM()
@@ -168,7 +171,9 @@ namespace Pr_Signal_ir.MVC.Services
                     Id = a.Id,
                     Type = "Product",
                     Product = _mapper.Map<ProductVM>(a),
-                    path = a.FileToProduct?.FirstOrDefault()?.FileManager.Path
+        
+                    path = a.FileToProduct?.FirstOrDefault()?.FileManager?.Path?.SetForProductUrl(),
+                    Url = $"/Product/{a.Id}/{a.TitleInBrowser.SetForUrl()}",
                 });
             }
             return (newmodel);
@@ -212,6 +217,56 @@ namespace Pr_Signal_ir.MVC.Services
           
         
         }
+
+        public async Task<List<SearchVM>> GetProductsCategoryByTag(string name)
+        {
+            var model = await _mediator.Send(new GetTagListRequest());
+
+
+            return model.Where(a => a.Name.Contains(name)).Select(a => new SearchVM()
+            {
+                Desc = a?.TagToProduct?.FirstOrDefault()?.Product.Title,
+                Title = a?.TagToProduct?.FirstOrDefault()?.Product.TitleInBrowser,
+                Id = a.TagToProduct.FirstOrDefault().Product.Id,
+                Type = "Product",
+                Product = _mapper.Map<ProductVM>(a),
+                path = a?.TagToProduct?.FirstOrDefault()?.Product.FileToProduct?.FirstOrDefault()?.FileManager?.Path
+                    ?.SetForProductUrl()
+            }).ToList();
+        }
+
+        public async Task<List<SearchVM>> GetProductsCategoryByFilter(string name)
+        {
+            var model = await _mediator.Send(new GetFilterValueProductListRequest());
+
+            var newmodel = (model.Where(a => a.Value.Contains(name)));
+            List<SearchVM> search = new List<SearchVM>();
+            foreach (var item in newmodel.ToList())
+            {
+                foreach (var product in item.FilterToProduct)
+                {
+                    search.Add(new SearchVM()
+                    {
+                        Desc = product.Product.Title,
+                        Title = product.Product.TitleInBrowser,
+                        Id = product.Product.Id,
+                        Type = "Product",
+                        Product = _mapper.Map<ProductVM>(product.Product),
+                        path = product.Product.FileToProduct?.FirstOrDefault()?.FileManager?.Path?.SetForProductUrl(),
+                        Url = $"/Product/{product.Product.Id}/{product.Product.TitleInBrowser.SetForUrl()}",
+                    });
+                }
+            }
+
+
+            return (search.DistinctBy(a=>a.Id).ToList());
+        }
+
+        public async Task<List<SearchVM>> GetProductsCategoryByCategory(string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<ProductVM> GetProductsDetails(int id)
         {
             try

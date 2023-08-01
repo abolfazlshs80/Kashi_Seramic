@@ -125,7 +125,7 @@ namespace Pr_Signal_ir.MVC.Services
             var newmodel = model.Where(a => a.Text.Contains(text) ||
             a.ShortTitle.Contains(text) ||
             a.LongTitle.Contains(text) ||
-            a.Tag.Contains(text) ||
+            
             a.TitleBrowser.Contains(text)).Select(a => new SearchVM()
             {
                 Desc = a.ShortTitle,

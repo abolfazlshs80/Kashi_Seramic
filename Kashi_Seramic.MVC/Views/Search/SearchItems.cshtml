@@ -2,7 +2,7 @@
 
 @{
     ViewBag.pageType = "website";
-    ViewBag.TitleBrowser =  ViewBag.Title;
+    ViewBag.TitleBrowser =  Model.Path2;
     ViewBag.keywords = string.Join(',', Model.SearchVM);
     ViewBag.author = Model.Setting.CreatedBy;
   //  ViewBag.description = Model.LongTitle;
@@ -23,9 +23,19 @@
 <div class="blog-wrap ptb-100">
     <div class="container">
         <div class="row justify-content-center">
+            @if (Model.SearchVM.Count < 1)
+            {
+                <h5>موردی یافت نشد</h5>
+            }
+            @if (Model!.Type!.Equals("Category"))
+            {
+            
+                <img src="@(Model.Path2.SetForUrl().SetForCategoryUrl()).jpg" width="300" height="100" style="width: 100%"/> 
+                Html.Raw(Model.Desc);
+            }
             @foreach (var item in Model.SearchVM.Distinct().ToList())
             {
-                <div class="col-xl-4 col-lg-6 col-md-6">
+                <div class="col-xl-4 col-lg-6 col-md-6 mt-3">
                     <div class="blog-card style1">
                         <div class="blog-img">
                             <img src="@item.path" alt="@item.Title" class="ImageBaner">
@@ -38,12 +48,12 @@
                                     <li><i class="flaticon-chat-comment-oval-speech-bubble-with-text-lines"></i>@item.Blog.CommentToBlog.Count نظر</li>
                                 </ul>
                             }
-                       @*      if (item.Type.Equals("Search"))
+                            @*      if (item.Type.Equals("Search"))
                             {
                    
                             }*@
                             <h3><a href="@item.Url">@item.Title</a></h3>
-                            <a href="blog-details-right-sidebar.html" class="link style2">
+                            <a href="@item.Url" class="link style2">
                                 @(item.Type.Equals("Blog") ? "    ادامه خواندن" : "افزودن به سبد خرید")
                                 <i class="flaticon-back"></i>
                             </a>
@@ -146,10 +156,22 @@
         for (var i = 0; i < model["searchVM"]["$values"].length; i++) {
             if (i != 0) { script.textContent =script.textContent + ','; }
 
-            script.textContent = script.textContent + '       {         "@@type": "ListItem",           "position": "' + i + '",    "item": {   "@@type": "Movie",   "url": "' + model["setting"]["sitePath"] + model["searchVM"]["$values"][i]["url"] + '", "name": "' + model["searchVM"]["$values"][i]["title"] + '",                                "image": "'+model["setting"]["sitePath"]+model["searchVM"]["$values"][i]["path"]+'",                                "dateCreated": "'+model["searchVM"]["$values"][i]["date"]+'",                                "director": {                                    "@@type": "Person",                                    "name": "'+model["searchVM"]["$values"][i]["owener"]+'"                                },                                "review": {                                    "@@type": "Review",                                    "reviewRating": {                                        "@@type": "Rating",                                        "ratingValue": "5"                                  },                                  "author": {                                       "@@type": "Person",                                       "name": "'+model["searchVM"]["$values"][i]["owener"]+'"                                   },                                   "reviewBody": "'+model["searchVM"]["$values"][i]["desc"]+'"                                },                               "aggregateRating": {                                   "@@type": "AggregateRating",                                    "ratingValue": "90",                                    "bestRating": "100",                                    "ratingCount": "19141"                                }                            }                        }';
+            script.textContent = script.textContent + '       {         "@@type": "ListItem",           "position": "' + i + '",    "item": {   "@@type": "Movie",   "url": "' + model["setting"]["sitePath"] + model["searchVM"]["$values"][i]["url"] + '", "name": "' + model["searchVM"]["$values"][i]["title"] + '",                                "image": "' + model["setting"]["sitePath"] + model["searchVM"]["$values"][i]["path"] + '",                                "dateCreated": "' + model["searchVM"]["$values"][i]["date"] + '",                                "director": {                                    "@@type": "Person",                                    "name": "' + model["searchVM"]["$values"][i]["owener"] + '"                                },                                "review": {                                    "@@type": "Review",                                    "reviewRating": {                                        "@@type": "Rating",                                        "ratingValue": "5"                                  },                                  "author": {                                       "@@type": "Person",                                       "name": "' + model["searchVM"]["$values"][i]["owener"] + '"                                   },                                   "reviewBody": "' + model["searchVM"]["$values"][i]["desc"] + '"                                },                               "aggregateRating": {                                   "@@type": "AggregateRating",                                    "ratingValue": "90",                                    "bestRating": "100",                                    "ratingCount": "19141"                                }                            }                        }';
         }
         script.textContent = script.textContent + ']}';
-     document.head.appendChild(script);
+         document.head.appendChild(script);
+
+         if (model["type"]==("Category")) {
+             var script1 = document.createElement('script');
+
+             script1.setAttribute('type', 'application/ld+json');
+
+            script1.textContent = '{"@@context": "https://schema.org","@@type": "WebSite","name": "   دسته بندی ' + model["path2"] + '", "url": "' + model["SitePath"] + '","description": "' + model["desc"] + '" }';
+
+             document.head.appendChild(script1);
+         }
+
+ 
 
     </script>
 }

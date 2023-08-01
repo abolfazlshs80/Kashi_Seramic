@@ -64,7 +64,8 @@ namespace Pr_Signal_ir.MVC.Services
                 Id = a.Blog.Id,
                 Type = "Blog",
                 Blog = _mapper.Map<BlogVM>(a.Blog),
-                path = a.Blog.FileToBlog?.FirstOrDefault()?.FileManager.Path
+                path = a.Blog?.FileToBlog?.FirstOrDefault()?.FileManager?.Path?.SetForBlogUrl(),
+                Url = $"/Blog/{a.Blog.Id}/{a.Blog.TitleBrowser.SetForUrl()}",
             }));
             list.AddRange(model.TagToProduct.Select(a => new SearchVM()
             {
@@ -73,7 +74,8 @@ namespace Pr_Signal_ir.MVC.Services
                 Id = a.Product.Id,
                 Type = "Product",
                 Product = _mapper.Map<ProductVM>(a.Product),
-                path = a.Product.FileToProduct?.FirstOrDefault()?.FileManager.Path
+                path = a.Product?.FileToProduct?.FirstOrDefault()?.FileManager?.Path?.SetForProductUrl(),
+                Url = $"/Product/{a.Product.Id}/{a.Product.TitleInBrowser.SetForUrl()}",
             }));
             return list;
         }
@@ -83,7 +85,7 @@ namespace Pr_Signal_ir.MVC.Services
             var model = await _mediator.Send(new GetTagListRequest() );
             var list = new List<SearchVM>();
 
-            foreach (var item in model)
+            foreach (var item in model.Where(a=>a.Name.Contains(text)))
             {
                 list.AddRange(item.TagToBlog.Select(a => new SearchVM()
                 {
@@ -92,7 +94,8 @@ namespace Pr_Signal_ir.MVC.Services
                     Id = a.Blog.Id,
                     Type = "Blog",
                     Blog = _mapper.Map<BlogVM>(a.Blog),
-                    path = a.Blog.FileToBlog?.FirstOrDefault()?.FileManager.Path
+                    path = a.Blog?.FileToBlog?.FirstOrDefault()?.FileManager?.Path?.SetForBlogUrl(),
+                    Url = $"/Blog/{a.Blog.Id}/{a.Blog.TitleBrowser.SetForUrl()}",
                 }));
                 list.AddRange(item.TagToProduct.Select(a => new SearchVM()
                 {
@@ -101,7 +104,8 @@ namespace Pr_Signal_ir.MVC.Services
                     Id = a.Product.Id,
                     Type = "Product",
                     Product = _mapper.Map<ProductVM>(a.Product),
-                    path = a.Product.FileToProduct?.FirstOrDefault()?.FileManager.Path
+                    path = a.Product?.FileToProduct?.FirstOrDefault()?.FileManager?.Path?.SetForProductUrl(),
+                    Url = $"/Product/{a.Product.Id}/{a.Product.TitleInBrowser.SetForUrl()}",
                 }));
             }
    

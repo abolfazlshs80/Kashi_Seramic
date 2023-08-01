@@ -3,14 +3,14 @@
 
 
 <footer class="footer-wrap style2 pt-100">
-    <img src="/Kashi_Seramic_Theme/assets/img/footer-map.png" alt="IMage" class="footer-shape-one">
+    <img src="/Kashi_Seramic_Theme/assets/img/footer-map.png" width="100" height="100" alt="@Model.Setting.Title" class="footer-shape-one">
     <div class="footer-top">
         <div class="container">
             <div class="row pb-75">
                 <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 pe-xl-5">
                     <div class="footer-widget">
                         <a href="/" class="footer-logo">
-                            <img src="@Model.Setting.LogoPath.SetForLogoUrl()" alt="@Model.Setting.Title" alt="@Model.Setting.Desc">
+                            <img class="imageLogo" src="@Model.Setting.LogoPath.SetForLogoUrl()" width="50" height="50" alt="@Model.Setting.Title" alt="@Model.Setting.Desc">
                         </a>
                         <p class="comp-desc">
                  @Model.Setting.FotterDesc
@@ -23,16 +23,16 @@
                                     <span class="lang-name"></span>
                                 </button>
                                 <div class="dropdown-menu language-dropdown-menu">
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/Kashi_Seramic_Theme/assets/img/uk.png" alt="flag">
+                                    <a class="dropdown-item" href="#" rel="noindex nofolow" target="_blank">
+                                        <img src="/Kashi_Seramic_Theme/assets/img/uk.png" width="25" height="25" alt="انگلیسی">
                                         انگلیسی
                                     </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/Kashi_Seramic_Theme/assets/img/china.png" alt="flag">
+                                    <a class="dropdown-item" href="#" rel="noindex nofolow" target="_blank">
+                                        <img src="/Kashi_Seramic_Theme/assets/img/china.png" width="25" height="25" alt="فارسی">
                                         فارسی
                                     </a>
-                                    <a class="dropdown-item" href="#">
-                                        <img src="/Kashi_Seramic_Theme/assets/img/uae.png" alt="flag">
+                                    <a class="dropdown-item" href="#" rel="noindex nofolow" target="_blank">
+                                        <img src="/Kashi_Seramic_Theme/assets/img/uae.png" width="25" height="25" alt="العربيّة">
                                         العربيّة
                                     </a>
                                 </div>
@@ -47,7 +47,7 @@
                             @foreach (var category in Model.Categories.Take(6))
                             {
                                 <li>
-                                    <a href="/Category/@category.Id/@category.Name" target="_blank">
+                                    <a href="/Category/@category.Id/@category.Name" target="" title="@category.Name">
                                         <i class="ri-arrow-left-s-line"></i>
                                         @category.Name
                                     </a>
@@ -63,41 +63,36 @@
                         <h3 class="footer-widget-title">لینکهای سریع</h3>
                         <ul class="footer-menu list-style">
                             <li>
-                                <a href="/AboutUs" target="_blank">
+                                <a href="/AboutUs" target="_blank" rel="nofollow">
                                     <i class="ri-arrow-left-s-line"></i>
                                     درباره ما
                                 </a>
                             </li>
                             <li>
-                                <a href="Product" target="_blank">
+                                <a href="Product" target="" title="    محصولات">
                                     <i class="ri-arrow-left-s-line"></i>
                                  محصولات
                                 </a>
                             </li>
                             <li>
-                                <a href="/Blog" target="_blank">
+                                <a href="/Blog" target="" title="   آخرین مقاله ها">
                                     <i class="ri-arrow-left-s-line"></i>
                                     آخرین مقاله ها
                                 </a>
                             </li>
                             <li>
-                                <a href="/ContactUs" target="_blank">
+                                <a href="/ContactUs" target="" title="       تماس با ما">
                                     <i class="ri-arrow-left-s-line"></i>
                                     تماس با ما
                                 </a>
                             </li>
                             <li>
-                                <a href="/faq" target="_blank">
+                                <a href="/faq" target="" title="  سوالات متداول">
                                     <i class="ri-arrow-left-s-line"></i>
                              سوالات متداول
                                 </a> 
                             </li>
-                            <li>
-                                <a href="terms-of-service.html" target="_blank">
-                                    <i class="ri-arrow-left-s-line"></i>
-                                    قوانین و ضوابط
-                                </a>
-                            </li>
+                        
                         </ul>
                     </div>
                 </div>
@@ -116,8 +111,8 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <p class="copyright-text">
-                        <i class="ri-copyright-line"></i><span>فلا</span>. تمام حقوق قالب محفوظ است . طراحی و
-                        توسعه <a href="https://www.rtl-theme.com/author/barat" target="_blank"> @Model.Setting.DeveloperName</a>
+                        <i class="ri-copyright-line"></i>. تمام حقوق قالب محفوظ است . طراحی و
+                        توسعه <a href="@Model.Setting.DeveloperLinkName" target="" title="@Model.Setting.DeveloperName"> @Model.Setting.DeveloperName</a>
                     </p>
                 </div>
                 <div class="col-md-6">

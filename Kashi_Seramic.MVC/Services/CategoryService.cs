@@ -23,14 +23,52 @@ namespace Pr_Signal_ir.MVC.Services
         private readonly IMediator _mediator;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-
-        public CategoryService(IMediator mediator, IHttpContextAccessor httpContextAccessor, IMapper mapper, ILocalStorageService localStorageService) 
+        private readonly IUserService _UserService;
+        public CategoryService(IMediator mediator, IHttpContextAccessor httpContextAccessor, IMapper mapper, ILocalStorageService localStorageService, IUserService UserService) 
         {
             this._localStorageService = localStorageService;
             this._mapper = mapper;
             _mediator = mediator;
             this._httpContextAccessor = httpContextAccessor;
+            _UserService = UserService;
         }
+
+        public async Task<IEnumerable<SearchVM>> GetCategoryBySearchVM(string name)
+        {
+            var model =( await _mediator.Send(new GetCategoryListRequest() )).Where(a=>a.Name.Contains(name));
+            var list = new List<SearchVM>();
+
+            foreach (var item in model)
+            {
+                list.AddRange(item.CategoryToBlog.Select(a => new SearchVM()
+                {
+                    Desc = a.Blog.ShortTitle,
+                    Title = a.Blog.LongTitle,
+                    Id = a.Blog.Id,
+                    Type = "Blog",
+                    Blog = _mapper.Map<BlogVM>(a.Blog),
+                    path = a.Blog?.FileToBlog?.FirstOrDefault()?.FileManager?.Path?.SetForBlogUrl(),
+                    Url = $"/Blog/{a.Blog.Id}/{a.Blog.TitleBrowser.SetForUrl()}",
+                    Date = a.Blog.DateCreated,
+                    Owener = (_UserService.GetEmployee(a.Blog.Owner)).Result.Firstname + " " + (_UserService.GetEmployee(a.Blog.Owner)).Result.Firstname
+                }));
+                list.AddRange(item.CategoryToProduct.Select(a => new SearchVM()
+                {
+                    Desc = a.Product.TitleInBrowser,
+                    Title = a.Product.Title,
+                    Id = a.Product.Id,
+                    Type = "Product",
+                    Product = _mapper.Map<ProductVM>(a.Product),
+                    path = a.Product?.FileToProduct?.FirstOrDefault()?.FileManager?.Path?.SetForProductUrl(),
+                    Url = $"/Product/{a.Product.Id}/{a.Product.TitleInBrowser.SetForUrl()}",
+                    Date = a.Product.LastModifiedDate.Value,
+                    Owener =( _UserService.GetEmployee(a.Product.Owner)).Result.Firstname+" "+ (_UserService.GetEmployee(a.Product.Owner)).Result.Firstname
+                }));
+        
+            }
+            return list;
+        }
+
         public async Task<Response<int>> CreateCategory(CreateCategoryVM cate)
         {
             var response = new Response<int>();
@@ -98,7 +136,7 @@ namespace Pr_Signal_ir.MVC.Services
                path = a.Blog?.FileToBlog?.FirstOrDefault()?.FileManager?.Path?.SetForBlogUrl(),
                Url = $"/Blog/{a.Blog.Id}/{a.Blog.TitleBrowser.SetForUrl()}",
                Date = a.Blog.DateCreated,
-               Owener = a.Blog.Owner
+               Owener = (_UserService.GetEmployee(a.Blog.Owner)).Result.Firstname + " " + (_UserService.GetEmployee(a.Blog.Owner)).Result.Firstname
            }));
             list.AddRange(model.CategoryToProduct.Select(a => new SearchVM()
             {
@@ -110,7 +148,7 @@ namespace Pr_Signal_ir.MVC.Services
                 path = a.Product?.FileToProduct?.FirstOrDefault()?.FileManager?.Path?.SetForProductUrl(),
                 Url = $"/Product/{a.Product.Id}/{a.Product.TitleInBrowser.SetForUrl()}",
                 Date = a.Product.LastModifiedDate.Value,
-                Owener = a.Product.Owner
+                Owener = (_UserService.GetEmployee(a.Product.Owner)).Result.Firstname + " " + (_UserService.GetEmployee(a.Product.Owner)).Result.Firstname
             }));
             return list;
         }

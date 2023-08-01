@@ -31,12 +31,22 @@ namespace Pr_Signal_ir.Persistences.Repositories
 
         public async Task<List<FilterValueProduct>> GetFilterValueProductsWithDetails()
         {
-           return await _dbContext.FilterValueProduct.ToListAsync();
+           return await _dbContext.FilterValueProduct
+               .Include(a=>a.FilterToProduct)
+               .ThenInclude(a=>a.Product).
+               ThenInclude(a => a.FileToProduct).
+               ThenInclude(a => a.FileManager)
+               .ToListAsync();
         }
 
         public async Task<FilterValueProduct> GetFilterValueProductWithDetails(int id)
         {
-            return await _dbContext.FilterValueProduct.FirstOrDefaultAsync(a=>a.Id.Equals(id));
+            return await _dbContext.FilterValueProduct
+                .Include(a => a.FilterToProduct)
+                .ThenInclude(a => a.Product)
+                .ThenInclude(a=>a.FileToProduct)
+                .ThenInclude(a=>a.FileManager)
+                .FirstOrDefaultAsync(a=>a.Id.Equals(id));
         }
     }
 }

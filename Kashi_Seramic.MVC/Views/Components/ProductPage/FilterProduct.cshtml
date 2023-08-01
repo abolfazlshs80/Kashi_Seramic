@@ -21,7 +21,10 @@
             {
                 <tr>
                     <td class="text-start"><span class="fw-bold text-green">@item.FilterValueProduct?.FilterProduct?.Title</span></td>
-                    <td class="text-end">@item.FilterValueProduct?.Value</td>
+                    <td class="text-end">
+                            <a href="/Filter/@item.FilterValueProduct?.Value.SetForUrl()" title="@(item.FilterValueProduct?.Value)  محصول" rel="index follow"> @item.FilterValueProduct?.Value</a>
+                       
+                    </td>
 
                                          
                                               

@@ -41,6 +41,16 @@ namespace Pr_Signal_ir.Persistences.Repositories
             return await _dbContext.FilterToProduct.Where(a => a.FilterId == id).ToListAsync();
         }
 
+       public async Task<List<FilterToProduct>> GetFilterToProductWithProductId(int id)
+       {
+           return await _dbContext.FilterToProduct.Where(a => a.ProductId == id).ToListAsync();
+       }
+
+       public async Task<List<FilterToProduct>> GetFilterToProductAll()
+       {
+           return await _dbContext.FilterToProduct.ToListAsync();
+       }
+
        public async Task<List<FilterToProduct>> GetFilterToProductWithBlogId(int id)
         {
             return await _dbContext.FilterToProduct.Where(a => a.ProductId == id).ToListAsync();

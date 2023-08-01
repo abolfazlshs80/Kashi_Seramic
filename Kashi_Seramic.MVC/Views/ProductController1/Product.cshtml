@@ -3,8 +3,8 @@
 @model ProductVM
 @{
     ViewBag.pageType = "Product";
-    ViewBag.TitleBrowser = Model.TitleInBrowser + "-" + ViewBag.Title;
-    ViewBag.keywords = string.Join(',', Model.TagToProduct);
+    ViewBag.TitleBrowser = Model.TitleInBrowser + " محصول " ;
+    ViewBag.keywords = string.Join(',', Model.TagToProduct.Select(a=>a.Tag.Name));
     ViewBag.author = Model.CreatedBy;
     ViewBag.description = Model.Text;
     ViewBag.robot = "index,follow";
@@ -31,7 +31,7 @@
                     @await Component.InvokeAsync("FilterProductComponents")
                     @if (Model.Qountity > 0)
                     {
-                        <a data-bs-target="#SuucessAddCardModal" data-bs-toggle="modal" class="btn style1 w-100">ثبت نام در  دوره</a>
+                        <a data-bs-target="#SuucessAddCardModal" data-bs-toggle="modal" class="btn style1 w-100">خرید محصول</a>
                     }
 
 
@@ -50,7 +50,7 @@
                             <i class="flaticon-chat-comment-oval-speech-bubble-with-text-lines"></i>@Model.CommentToProduct.Count() نظر
                         </li>
                     </ul>
-                    <h2>@Model.TitleInBrowser</h2>
+                    <h1>@Model.TitleInBrowser</h1>
                     <div class="post-para">
                         @Html.Raw(Model.Text)
                     </div>
@@ -77,13 +77,32 @@
 @section Scripts
 {
     <script>
-       var model=@(Json.Serialize(Model))
+        var model = @(Json.Serialize(Model));
+        var type = @(Json.Serialize(ViewBag.pageType));
        var imgSource=document.querySelector("#Imgback").getAttribute("src");
         const script = document.createElement('script');
         script.setAttribute('type', 'application/ld+json');
-        script.textContent =  '    {   "@@context": "https://schema.org/",    "@@type": "Product",    "name": "'+model["title"]+'",    "image": [       "' +model["setting"]["sitePath"]+imgSource + '"   ],   "description": "",    '+model["text"]+'       "sku": "'+model["setting"]["phone1"]+'",              "mpn": "'+model["id"]+'",              "brand": {                "@@type": "Brand",                "name": "'+model["setting"]["title"]+'"              },              "review": {                "@@type": "Review",                "reviewRating": {                  "@@type": "Rating",                  "ratingValue": 4,                  "bestRating": 5                },                "author": {                  "@@type": "Person",                    "name": "'+model["createdBy"]+'"  }  },  "aggregateRating": { "@@type": "AggregateRating",  "ratingValue": 4.4,  "reviewCount": 89}, "offers": {   "@@type": "AggregateOffer",  "offerCount": 5, "lowPrice": '+model["offPrice"]+', "highPrice": '+model["price"]+', "priceCurrency": "IR" } }';
+        script.textContent =  '    {   "@@context": "https://schema.org/",    "@@type": "Product",    "name": "'+model["title"]+'",    "image": [       "' +model["setting"]["sitePath"]+imgSource + '"   ],   "description": "'+model["text"]+' ",          "sku": "'+model["setting"]["phone1"]+'",              "mpn": "'+model["id"]+'",              "brand": {                "@@type": "Brand",                "name": "'+model["setting"]["title"]+'"              },              "review": {                "@@type": "Review",                "reviewRating": {                  "@@type": "Rating",                  "ratingValue": 4,                  "bestRating": 5                },                "author": {                  "@@type": "Person",                    "name": "'+model["createdBy"]+'"  }  },  "aggregateRating": { "@@type": "AggregateRating",  "ratingValue": 4.4,  "reviewCount": 89}, "offers": {   "@@type": "AggregateOffer",  "offerCount": 5, "lowPrice": '+model["offPrice"]+', "highPrice": '+model["price"]+', "priceCurrency": "IR" } }';
         document.head.appendChild(script);
+       for (var i = 0; i < model["filterToProduct"]["$values"].length; i++) {
+          
+           var script1 = document.createElement('script');
 
+           script1.setAttribute('type', 'application/ld+json');
+ 
+           script1.textContent = '{"@@context": "https://schema.org","@@type": "WebSite","name": "  خرید '
+               + model["title"]+' '+model["filterToProduct"]["$values"][i]["filterValueProduct"]["value"] + '", "url": "'+model["setting"]["sitePath"]+'/'+model["type"]+'/'+model["id"]+'/'+model["title"].replace(" ","-")+'","description": "' + model["text"] + '" }';
+           document.head.appendChild(script1);
+       }
 
-    </script>
+        for (var i = 0; i < model["tagToProduct"]["$values"].length; i++) {
+          
+            var script1 = document.createElement('script');
+
+            script1.setAttribute('type', 'application/ld+json');
+
+            script1.textContent = '{"@@context": "https://schema.org","@@type": "WebSite","name": "   ' + model["tagToProduct"]["$values"][i]["tag"]["name"] + '", "url": "' + model["setting"]["sitePath"] + '/Tag/' +model["tagToProduct"]["$values"][i]["tag"]["name"].replace(" ", "-") + '","description": "' + model["text"] + '" }';
+            document.head.appendChild(script1);
+        }
+   </script>
 }

@@ -10,6 +10,8 @@ namespace Pr_Signal_ir.Application.Contracts.Persistence
     public interface IFilterToProductRepository : IGenericRepository<FilterToProduct>
     {
     
+        Task<List<FilterToProduct>> GetFilterToProductWithProductId(int id);
+        Task<List<FilterToProduct>> GetFilterToProductAll();
         Task<List<FilterToProduct>> GetFilterToProductWithBlogId(int id);
         Task<List<FilterToProduct>> GetFilterToProductWithBImageId(int id);
         Task<bool> DeleteFilterToProductByBlogId(int id);

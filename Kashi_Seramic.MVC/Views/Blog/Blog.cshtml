@@ -1,8 +1,8 @@
 ﻿@model BlogVM
 @{
     ViewBag.pageType = "article";
-    ViewBag.TitleBrowser = Model.TitleBrowser +"-"+ViewBag.Title;
-    ViewBag.keywords = string.Join(',', Model.TagToBlog);
+    ViewBag.TitleBrowser = Model.TitleBrowser +" مقاله ";
+    ViewBag.keywords = string.Join(',', Model.TagToBlog.Select(a=>a.Tag.Name));
     ViewBag.author = Model.CreatedBy;
     ViewBag.description = Model.LongTitle;
     ViewBag.robot = "index,follow";
@@ -42,7 +42,7 @@
                             <i class="flaticon-chat-comment-oval-speech-bubble-with-text-lines"></i>@Model.CommentToBlog.Count نظر
                         </li>
                     </ul>
-                    <h2>@Model.LongTitle</h2>
+                    <h1>@Model.LongTitle</h1>
                     <div class="post-para">
                         @Html.Raw(Model.Text)
                     </div>
@@ -71,9 +71,17 @@
        var imgSource=document.querySelector("#Imgback").getAttribute("src");
         const script = document.createElement('script');
         script.setAttribute('type', 'application/ld+json');
-        script.textContent = ' {      "@@context": "https://schema.org",      "@@type": "NewsArticle",      "headline": "' + model["shortTitle"]  + ' مقاله ",      "image": [       "' +model["setting"]["sitePath"]+imgSource + '"     ],      "datePublished": "'+model["dateCreated"]+'",     "dateModified": "'+model["dateCreated"]+'",      "author": [{          "@@type": "Person",    "name": "'+model["createdBy"]+'", "url": "'+model["setting"]["sitePath"]+'" }]}';
+        script.textContent = ' {      "@@context": "https://schema.org",      "@@type": "NewsArticle",      "headline": "' + model["shortTitle"]  + ' مقاله ",      "image": [       "' +model["setting"]["sitePath"]+imgSource + '"     ],      "datePublished": "'+model["dateCreated"]+'",     "dateModified": "'+model["dateCreated"]+'",      "author": [{          "@@type": "Person",    "name": "'+model["createdBy"]+'", "url": "'+model["setting"]["sitePath"]+'/Blog/'+ model["id"] + '/' + model["longTitle"].replace(" ", "-") +'" }]}';
       document.head.appendChild(script);
+        for (var i = 0; i < model["tagToBlog"]["$values"].length; i++) {
+          
+           var script1 = document.createElement('script');
 
+           script1.setAttribute('type', 'application/ld+json');
+
+            script1.textContent = '{"@@context": "https://schema.org","@@type": "WebSite","name": "   ' + model["tagToBlog"]["$values"][i]["tag"]["name"] + '", "url": "' + model["setting"]["sitePath"] + '/Tag/' + model["tagToBlog"]["$values"][i]["tag"]["name"].replace(" ", "-") + '","description": "' + model["text"] + '" }';
+           document.head.appendChild(script1);
+       }
 
     </script>
 }

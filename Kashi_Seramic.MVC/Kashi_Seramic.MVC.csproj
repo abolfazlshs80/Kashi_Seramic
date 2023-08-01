@@ -12,8 +12,8 @@
     <Content Remove="Areas\User\Views\Shared\AccessDnied.cshtml" />
     <Content Remove="Areas\User\Views\Shared\_LayoutAdmin.cshtml" />
     <Content Remove="Areas\User\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <Content Remove="bundleconfig.json" />
     <Content Remove="wwwroot\Kashi_Seramic_Theme\assets\js\MainScript.js" />
-    <Content Remove="wwwroot\Kashi_Seramic_Theme\assets\js\User\main.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +41,7 @@
     <None Include="Areas\User\Views\Shared\AccessDnied.cshtml" />
     <None Include="Areas\User\Views\Shared\_LayoutAdmin.cshtml" />
     <None Include="Areas\User\Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="bundleconfig.json" />
     <None Include="Views\Components\BlogPage\BlogAddComments.cshtml" />
     <None Include="Views\Components\BlogPage\BlogLink.cshtml" />
     <None Include="Views\Components\BlogPage\BlogSearch.cshtml" />
@@ -2346,13 +2347,13 @@
     <None Include="wwwroot\Kashi_Seramic_Theme\assets\js\odometer.min.js" />
     <None Include="wwwroot\Kashi_Seramic_Theme\assets\js\owl.carousel.min.js" />
     <None Include="wwwroot\Kashi_Seramic_Theme\assets\js\tweenmax.min.js" />
-    <None Include="wwwroot\Kashi_Seramic_Theme\assets\js\User\main.js" />
     <None Include="wwwroot\Kashi_Seramic_Theme\assets\php\form-process.php" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="BuildBundlerMinifier2022" Version="2.9.9" />
     <PackageReference Include="LocalStorage" Version="2.1.0" />
     <PackageReference Include="MediatR" Version="11.1.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
@@ -2362,9 +2363,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.15" />
+    <PackageReference Include="MiniProfiler.AspNetCore.Mvc" Version="4.3.8" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle" Version="5.6.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.31.0" />
+    <PackageReference Include="WebMarkupMin.AspNetCore6" Version="2.14.1" />
+    <PackageReference Include="WebMarkupMin.Core" Version="2.14.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -2386,6 +2390,7 @@
     <Folder Include="wwwroot\Images\Category\" />
     <Folder Include="wwwroot\Images\Slider\" />
     <Folder Include="wwwroot\Images\Product\" />
+    <Folder Include="wwwroot\Kashi_Seramic_Theme\assets\js\User\" />
   </ItemGroup>
 
   <ItemGroup>

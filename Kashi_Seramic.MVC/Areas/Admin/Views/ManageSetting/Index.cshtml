@@ -190,16 +190,25 @@
                     <input type="file" name="Model.FileHeader" id="fileslider" class="dropify" data-bs-height="180"/>
                 </div>
 
-
-                <textarea required="" name="Model.AboutText" id="summernote">
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.AboutText)
+                    <textarea required="" name="Model.AboutText" id="summernote">
             @Model.AboutText
             </textarea>
-                <textarea required="" name="Model.MapCode" id="summernote" class="w-75">
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.MapCode)
+                    <textarea required="" name="Model.MapCode" id="summernote" class="w-75">
             @Model.MapCode
             </textarea>
-                <textarea required="" name="Model.DeveloperLinkName" id="summernote" class="w-75">
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(a=>a.DeveloperLinkName)
+                    <textarea required="" name="Model.DeveloperLinkName" id="summernote" class="w-75">
                     @Model.DeveloperLinkName
                 </textarea>
+                </div>
+       
                 <input type="submit" class="btn btn-primary" value="ثبت" />
             }
 

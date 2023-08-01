@@ -27,13 +27,13 @@ namespace Kashi_Seramic.MVC.Components.BlogPage
             {
                 var _blogid = ViewBag.blogid;
                 var modelblog = await _BlogService.GetBlogsDetails(_blogid);
-          //      model.TagToBlog = modelblog.TagToBlog;
+                model.TagToBlog = modelblog.TagToBlog;
             }
             else if (ViewBag.type == "Product")
             {
                 var Productid = ViewBag.blogid;
                 var ModelProduct = await _ProductService.GetProductsDetails(Productid);
-              //  model.TagToProduct = ModelProduct.TagToProduct;
+               model.TagToProduct = ModelProduct.TagToProduct;
             }
             return View("/Views/Components/BlogPage/BlogTag.cshtml", model);
 

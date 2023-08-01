@@ -9,9 +9,24 @@ public static class StringExtention
 {
     public static string SetForUrl(this string str)
     {
+        if (string.IsNullOrEmpty(str))
+        {
+            return string.Empty;
+        }
         return str.Replace(" ", "-");
     }
-
+    public static string RemoveDahst(this string str)
+    {
+        if (string.IsNullOrEmpty(str))
+        {
+            return string.Empty;
+        }
+        return str.Replace("-", " ");
+    }
+    public static string SetForCategoryUrl(this string str)
+    {
+        return "/Images/Category/" + str;
+    }
     public static string SetForSliderUrl(this string str)
     {
         return "/Images/Slider/" + str;
@@ -38,7 +53,7 @@ public static class StringExtention
     }
     public static string SetForLogoUrl(this string str)
     {
-        return "/Images/Site/" + str;
+        return  str;
     }
 }
 

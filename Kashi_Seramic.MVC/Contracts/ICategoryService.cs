@@ -14,6 +14,7 @@ namespace Pr_Signal_ir.MVC.Contracts
         Task<List<CategoryVM>> GetCategorysActive();
         Task<CategoryVM> GetCategorysDetails(int id);
         Task<IEnumerable<SearchVM>> GetBlogsCategoryBySearchVM(int cateid);
+        Task<IEnumerable<SearchVM>> GetCategoryBySearchVM(string name);
         Task<Response<int>> CreateCategory(CreateCategoryVM cate);
         Task<Response<int>> UpdateCategory(int id, UpdateCategoryVM cate);
         Task<Response<int>> DeleteCategory(int id);

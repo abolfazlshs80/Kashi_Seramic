@@ -29,7 +29,7 @@ namespace Pr_Signal_ir.MVC.Models
             public string TitleInBrowser { get; set; }
             public string Text { get; set; }
             public decimal Price { get; set; }
-
+            public string Type { get; set; }
             public decimal OffPrice { get; set; }
             public int Qountity { get; set; }
             public int Seen { get; set; }

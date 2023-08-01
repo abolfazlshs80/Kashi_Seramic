@@ -13,5 +13,7 @@ namespace Pr_Signal_ir.MVC.Models.Search
         public IEnumerable<SearchVM> Search { get; set; }
         public string Path1 { get; set; }
         public string Path2 { get; set; }
+        public string Desc { get; set; }
+        public string Type { get; set; }
     }
 }

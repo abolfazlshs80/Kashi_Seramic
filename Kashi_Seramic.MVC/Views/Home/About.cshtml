@@ -2,7 +2,7 @@
 
 @{
     ViewBag.pageType = "website";
-    ViewBag.TitleBrowser = Model.TitleDesc +"-"+ViewBag.Title;
+    ViewBag.TitleBrowser = Model.TitleDesc +" درباره ما  -";
     ViewBag.keywords = "فروش کاشی,    شرکت کاشی,    درباره ما,    تاریخچه کاشی,   اهداف فروشگاه کاشی,      معرفی تیم کاشی,  تخصص‌های کاشی,  نقاط قوت کاشی فروشگاه,   کاشی‌های باکیفیت,  تنوع کاشی‌ها";
     ViewBag.author = Model.OwnerName;
     ViewBag.description = "شرکت یا فروشگاه کاشی با تجربه‌ای بیش از چند دهه در زمینه تولید و توزیع کاشی‌های با کیفیت در بازار فعالیت دارد. از آغاز فعالیت، این شرکت به عنوان یکی از پیشروان صنعت کاشی در منطقه شناخته می‌شود و به دلیل کیفیت بالا و طرح‌های منحصر به فرد خود، محبوبیت بسیاری را به دست آورده است.";
@@ -16,6 +16,7 @@
 
 <section class="contact-us-wrap ptb-100">
     <div class="container">
+        <h1 class="text-start">@Model.TitleDesc</h1>
         @Html.Raw(Model.AboutText)
 
     </div>

@@ -19,8 +19,8 @@
     {
 @await Component.InvokeAsync("HeaderMainPageComponents")
     }
-       
 
+ 
 @*<div class="container">
     <div class="search-property style1">
         <form action="#" class="property-search-form">
@@ -76,14 +76,14 @@
 @section Scripts
     {
     <script>
-        let model = @Json.Serialize(Model);
+        var model = @Json.Serialize(Model);
 
-                           const script = document.createElement('script');
-        const script1 = document.createElement('script');
+        var script = document.createElement('script');
+        var script1 = document.createElement('script');
         script.setAttribute('type', 'application/ld+json');
         script1.setAttribute('type', 'application/ld+json');
         script.textContent = '{"@@context": "https://schema.org","@@type": "WebSite","name": "' + model["title"] + '-  صفحه اصلی ", "url": "'+model["SitePath"]+'","description": "' + model["desc"] + '" }';
-        script1.textContent = '{ "@@context": "http://schema.org", "@@type": "BreadcrumbList","itemListElement": [{ "@@type": "ListItem", "position": 1,"item": {"@@id": "' + model["sitePath"] + '","name": "صفحه اصلی" }},{"@@type": "ListItem","position": 2,"item": {"@@id": "' + model["sitePath"] + 'contact","name": "ارتباط با ما"}},{"@@type": "ListItem","position": 3,"item": {"@@id": "' + model["sitePath"] + 'about","name": "درباره ما"}},{"@@type": "ListItem","position": 4,"item": {"@@id": "' + model["sitePath"] + 'shop","name": "فروشگاه "}}{"@@type": "ListItem","position": 5,"item": {"@@id": "' + model["SitePath"] + 'blog","name": "مقاله ها"}}{"@@type": "ListItem","position": 6,"item": {"@@id": "' + model["sitePath"] + 'category","name": "دسته بندی ها"}}]}'
+        script1.textContent = '{ "@@context": "http://schema.org", "@@type": "BreadcrumbList","itemListElement": [{ "@@type": "ListItem", "position": 1,"item": {"@@id": "' + model["sitePath"] + '","name": "صفحه اصلی" }},{"@@type": "ListItem","position": 2,"item": {"@@id": "' + model["sitePath"] + 'contact","name": "ارتباط با ما"}},{"@@type": "ListItem","position": 3,"item": {"@@id": "' + model["sitePath"] + 'about","name": "درباره ما"}},{"@@type": "ListItem","position": 4,"item": {"@@id": "' + model["sitePath"] + 'shop","name": "فروشگاه "}},{"@@type": "ListItem","position": 5,"item": {"@@id": "' + model["SitePath"] + 'blog","name": "مقاله ها"}},{"@@type": "ListItem","position": 6,"item": {"@@id": "' + model["sitePath"] + 'category","name": "دسته بندی ها"}}]}';
 
 
         document.head.appendChild(script);

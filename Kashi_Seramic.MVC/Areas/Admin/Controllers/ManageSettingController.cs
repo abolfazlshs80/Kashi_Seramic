@@ -52,10 +52,10 @@ namespace Kashi_Seramic.MVC.Areas.Admin.Controllers
             {
                 if (model.FileHeader != null)
                 {
-                    await _FileService.DeleteFile("Site", "logo" + ".jpg", "Category");
-                    var filename = "logo";
+                    await _FileService.DeleteFile("Site", "logo" + ".png", "");
+                    var filename = "logo.png";
                     //      var rnd = new Random().Next(1000, 99999).ToString();
-                    var Name = await _FileService.CreateFile(model.FileHeader, "Site", "", filename, "");
+                    var Name = await _FileService.CreateFile(model.FileHeader, "Site","", filename, "");
                     cat.LogoPath = Name;
                 }
                 await _setting.UpdateSetting(model.Id, _mapper.Map<UpdateSettingVM>(model));

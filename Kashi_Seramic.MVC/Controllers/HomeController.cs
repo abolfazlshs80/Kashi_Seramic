@@ -48,7 +48,7 @@ namespace Kashi_Seramic.MVC.Controllers
             ViewBag.StatusLocationBarOne = false;
             ViewBag.StatusLocationBar = true;
 
-            ViewBag.Title = "ارتباط با ما";
+            ViewBag.Title = "ارتباط با ما ";
             return View((await _settingService.GetSettings()).FirstOrDefault());
         }
         [Route("Faq")]

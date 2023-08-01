@@ -21,7 +21,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="/">
-                <img class="logo-light" src="/Images/Site/logo.png" alt="سایت فروش کاشی">
+                <img class="logo-light imageLogo" src="/Images/Site/logo.png" alt="سایت فروش کاشی" title="سایت فروش کاشی" rel="index" width="50" height="50">
                 @*<img class="logo-dark" src="/Kashi_Seramic_Theme/assets/img/logo-white.png" alt="logo">*@
             </a>
             <div class="collapse navbar-collapse main-menu-wrap" id="navbarSupportedContent">
@@ -35,7 +35,7 @@
                         if (menu.StatusInMainMenu)
                         {
                             <li class="nav-item">
-                                <a href="@menu.Href" class="nav-link ">
+                                <a href="@menu.Href" class="nav-link " title="@menu.Title" rel="follow,index">
                                     @menu.Title
                                     <i class="@menu.Icons"></i>
                                 </a>
@@ -54,7 +54,7 @@
                     <div class="header-btn">
                         @if (!User.Identity.IsAuthenticated)
                         {
-                            <button type="button" class="btn style3" data-bs-toggle="modal"
+                            <button type="button" class="btn style3" data-bs-toggle="modal" 
                                 data-bs-target="#signIn">
                                 ورود
                             </button>
@@ -67,7 +67,7 @@
                         {
                             string panel = User.IsInRole("Administrator") ? "پنل ادمین" : "حساب کاربری";
                             string url = User.IsInRole("Administrator") ? "/admin" : "/user/user/index";
-                            <a href="@url" class="btn style1">
+                            <a href="@url" class="btn style1" rel="nofollow">
                                 @panel
                             </a>
                             <a href="/Logout" type="button" class="btn style3">
@@ -75,7 +75,7 @@
                             </a>
                         }
                         <div class="dropdown d-sm-block d-lg-block  d-md-none  float-end m-0  d-flex shopping-cart" dir="rtl" style="">
-                            <a title="" class="nav-link icon text-end " onclick="showcard()" id="showcardbutton" data-bs-toggle="dropdown">
+                            <a title="سبدخرید" class="nav-link icon text-end " onclick="showcard()" id="showcardbutton" data-bs-toggle="dropdown" rel="nofollow" >
                                 <span class="badge bg-secondary header-badge showcountcard">0</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="48" height="48" x="0" y="0" viewBox="0 0 512 511" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path fill="#697c86" d="M195.031 450.57c-24.82 0-45.008-20.191-45.008-45.007 0-24.82 20.188-45.008 45.008-45.008 24.817 0 45.004 20.187 45.004 45.007 0 24.817-20.187 45.008-45.004 45.008zm0 0" data-original="#697c86" class=""></path><path fill="#465a61" d="M195.031 420.563c-8.277 0-15.004-6.723-15.004-15s6.727-15.004 15.004-15.004 15 6.726 15 15.003-6.722 15-15 15zm0 0" data-original="#465a61" class=""></path><path fill="#596c76" d="M407.063 450.57c-24.817 0-45.008-20.191-45.008-45.007 0-24.82 20.191-45.008 45.007-45.008s45.008 20.187 45.008 45.007c0 24.817-20.191 45.008-45.007 45.008zm0 0" data-original="#596c76"></path><path fill="#3b4a51" d="M407.063 420.563c-8.278 0-15.004-6.723-15.004-15s6.726-15.004 15.003-15.004 15 6.726 15 15.003-6.722 15-15 15zm0 0" data-original="#3b4a51"></path><path fill="#465a61" d="M454.469 345.55c0 8.403-6.602 15.005-15 15.005H152.426c-24.906 0-45.008-20.106-45.008-45.008 0-22.8 16.8-41.707 39.004-44.406 1.8-.602 3.902-.602 6.004-.602 3.597 0 7.199 1.504 9.601 3.902l-9.004 26.106h-.597c-8.403 0-15.004 6.598-15.004 15s6.601 15.004 15.004 15.004h287.043c8.398 0 15 6.597 15 15zM99.563 60.543c.953 1.2 17.109 8.496 33.374 15.64.06-1.292.223-2.574-.07-3.894l-13.199-60.012A14.99 14.99 0 0 0 105.016.5H15.004C6.71.5 0 7.21 0 15.504c0 8.289 6.71 15 15.004 15h77.953zm0 0" data-original="#465a61" class=""></path><path fill="#3b4a51" d="M454.469 345.55c0 8.403-6.602 15.005-15 15.005H298.344V330.55h141.125c8.398 0 15 6.597 15 15zm0 0" data-original="#3b4a51"></path><path fill="#5f31fd" d="M509.078 66.512c-3-3.903-7.203-6.004-12.004-6.004H99.614l46.808 210.633 6.601 29.406h284.043c6.602 0 12.602-4.504 14.403-10.805l60.008-210.031c1.203-4.5.3-9.602-2.399-13.2zm0 0" data-original="#fdbf00" class="" opacity="1"></path><path fill="#3a00fd" d="m511.477 79.71-60.008 210.032c-1.801 6.301-7.801 10.805-14.403 10.805H298.344V60.507h198.73c4.801 0 9.004 2.102 12.004 6.005 2.7 3.597 3.602 8.699 2.399 13.199zm0 0" data-original="#ff9f00" class="" opacity="1"></path></g></svg>
                             </a>

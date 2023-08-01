@@ -15,6 +15,9 @@ using Pr_Signal_ir.Application.Contracts.Persistence;
 using Pr_Signal_ir.Persistence.Repositories;
 using System.Text.Json.Serialization;
 using Kashi_Seramic.MVC.Contracts;
+using Microsoft.AspNetCore.ResponseCompression;
+using StackExchange.Profiling.Storage;
+using WebMarkupMin.AspNetCore6;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureApplicationServices();
@@ -36,9 +39,29 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     options.LoginPath = new PathString("/users/login");
     options.AccessDeniedPath = new PathString("/users/AccessDenied");
 });
+
+builder.Services.AddMiniProfiler(options =>
+{
+
+    options.RouteBasePath = "/profiler";
+    options.EnableMvcViewProfiling = true;
+
+
+
+});
+
 builder.Services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
-
+builder.Services.AddResponseCompression(options =>
+{
+    options.Providers.Add<GzipCompressionProvider>();
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+        new
+            []
+            {
+                "application/javascript"
+            });
+});
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -102,8 +125,17 @@ builder.Services.AddCors(o =>
         .AllowAnyMethod()
         .AllowAnyHeader());
 });
+builder.Services.AddWebMarkupMin(options =>
+    {
+        options.AllowMinificationInDevelopmentEnvironment = true;
+        options.AllowCompressionInDevelopmentEnvironment = true;
+    })
+    .AddHtmlMinification()
+    .AddHttpCompression()
+    .AddXmlMinification();
 var app = builder.Build();
-
+app.UseWebMarkupMin();
+app.UseMiniProfiler();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -111,6 +143,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+
 app.UseCookiePolicy();
 app.UseAuthentication();
 app.UseHttpsRedirection();
@@ -123,11 +157,12 @@ app.UseStaticFiles( new StaticFileOptions
                 ctx.Context.Response.Headers.Append("Cache-Control", "public, max-age=3600");
             }
         });
-
+app.UseResponseCompression();
 app.UseResponseCaching();
 app.UseRouting();
 //app.UseMiddleware<RequestMiddleware>();
 app.UseAuthorization();
+
 app.MapHub<NotifyHub>("/notifyhub");
 app.MapControllerRoute(
     name: "ManageBlog",

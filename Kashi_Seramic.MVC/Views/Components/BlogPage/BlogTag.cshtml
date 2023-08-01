@@ -11,7 +11,7 @@
             {
                 @foreach (var tag in Model.TagToBlog ??new List<TagToBlogVM>())
                 {
-                    <li><a href="/Tag/@tag.TagId/@tag.Tag.Name.SetForBlogUrl()" title="@tag.Tag.Name"> @tag.Tag.Name</a></li>
+                    <li><a href="/Tag/@tag.TagId/@tag.Tag.Name.SetForBlogUrl()" title="@tag.Tag.Name"rel="index,follow"> @tag.Tag.Name</a></li>
 
                 }
 
@@ -20,7 +20,7 @@
             {
                 @foreach (var tag in Model.TagToProduct ?? new List<TagToProductVM>())
                 {
-                    <li><a href="/Tag/@tag.TagId/@tag.Tag.Name.SetForBlogUrl()" title="@tag.Tag.Name"> @tag.Tag.Name</a></li>
+                    <li><a href="/Tag/@tag.TagId/@tag.Tag.Name.SetForBlogUrl()" title="@tag.Tag.Name"rel="index,follow"> @tag.Tag.Name</a></li>
 
                 }
             }

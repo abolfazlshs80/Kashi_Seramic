@@ -2,7 +2,7 @@
 
 @{
     ViewBag.pageType = "website";
-    ViewBag.TitleBrowser = Model.Title +"-"+ViewBag.Title;
+    ViewBag.TitleBrowser =   ViewBag.Title+" تماس با  ";
     ViewBag.keywords = "ارتباط با ما, تماس با ما,    نظرات و پیشنهادات, پشتیبانی مشتریان, اطلاعات تماس,  پرسش‌های متداول,  فرم تماس,  تماس با پشتیبانی, ارسال درخواست, تماس تلفنی";
     ViewBag.author = Model.OwnerName;
     ViewBag.description ="صفحه ارتباط با ما در وب‌سایت فروش کاشی، به کاربران امکان ارتباط مستقیم با شرکت یا فروشگاه را فراهم می‌کند. در این صفحه، کاربران می‌توانند نظرات، پرسش‌ها یا درخواست‌های خود را ارسال کنند و با تیم پشتیبانی یا مسئولان مرتبط در تماس باشند.";
@@ -15,6 +15,7 @@
 }
 <section class="contact-us-wrap ptb-100">
     <div class="container">
+        <h1 class="text-start">@Model.TitleDesc</h1>
         <div class="row justify-content-center pb-75">
             <div class="col-xl-4 col-lg-4 col-md-6">
                 <div class="contact-item">
@@ -37,7 +38,7 @@
                     <div class="contact-info">
                         <h3>ارسال یک ایمیل</h3>
                         <a href="mailto: hello@fela.com">@Model.Gmail</a>
-                       
+
                     </div>
                 </div>
             </div>
@@ -50,7 +51,7 @@
                         <h3>مرکز تماس</h3>
                         <a href="tel:@Model.Phone1">@Model.Phone1</a>
                         <a href="tel:@Model.Phone2">@Model.Phone2</a>
-                      
+
                     </div>
                 </div>
             </div>
@@ -64,7 +65,7 @@
                         <p>لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.لورم ایپسوم به سادگی ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم به مدت 40 سال استاندارد صنعت بوده است.</p>
                     </div>
                     <ul class="social-profile list-style style1">
-                  
+
                         <li>
                             <a target="_blank" href="@Model.TelegramChannle">
                                 <i class="ri-twitter-fill"></i>
@@ -75,7 +76,7 @@
                                 <i class="ri-instagram-line"></i>
                             </a>
                         </li>
-                    
+
                     </ul>
                 </div>
             </div>
@@ -115,9 +116,9 @@
                                     </label>
                                     <div class="help-block with-errors gridCheck-error"></div>
                                 </div>
-                            </div>   <input type="submit" value="ارسال" class="btn style2">
+                            </div> <input type="submit" value="ارسال" class="btn style2">
                             <div class="col-md-12">
-                             
+
                                 <div id="msgSubmit" class="h3 text-center hidden"></div>
                                 <div class="clearfix"></div>
                             </div>

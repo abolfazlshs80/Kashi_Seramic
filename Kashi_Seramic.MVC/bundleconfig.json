@@ -1,0 +1,125 @@
+[
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/css/main.min.css",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/css/main.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/css/bundle.css",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/css/aos.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/bootstrap.rtl.min.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/dark-theme.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/fancybox.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/jquery-ui-min.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/flaticon.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/odometer.min.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/owl.carousel.min.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/remixicon.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/responsive.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/rtl.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/ShopingCard.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/style.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/Vazirmatn-RD-FD-font-face.css",
+      "wwwroot/Kashi_Seramic_Theme/assets/css/main.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/aos.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/aos.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/bootstrap.bundle.min.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/bootstrap.bundle.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/contact-form-script.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/contact-form-script.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/fancybox.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/fancybox.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/form-validator.min.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/form-validator.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/jquery.appear.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/jquery.appear.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/jquery.min.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/jquery.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/jquery-ui-min.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/jquery-ui-min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/main.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/main.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/MainScript.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/MainScript.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/odometer.min.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/odometer.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/owl.carousel.min.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/owl.carousel.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/tweenmax.min.min.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/tweenmax.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Kashi_Seramic_Theme/assets/js/bundle.js",
+    "inputFiles": [
+      "wwwroot/Kashi_Seramic_Theme/assets/js/aos.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/bootstrap.bundle.min.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/contact-form-script.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/fancybox.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/form-validator.min.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/jquery.appear.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/jquery.min.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/jquery-ui-min.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/main.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/MainScript.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/odometer.min.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/owl.carousel.min.js",
+      "wwwroot/Kashi_Seramic_Theme/assets/js/tweenmax.min.js"
+    ],
+    "minify": { "enabled" : true }
+  }
+]

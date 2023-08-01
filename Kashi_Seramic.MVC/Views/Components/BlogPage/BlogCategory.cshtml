@@ -7,7 +7,7 @@
             @foreach (var cat in Model)
             {
                 <li>
-                    <a href="/Category/@cat.Id/@cat.Name.SetForUrl()">
+                    <a href="/Categori/@cat.Id/@cat.Name.SetForUrl()" title="@cat.Name" rel="noindex,nofollow">
                         <i class="flaticon-left-arrow-2"></i>
                     @cat.Name
                         <span>@cat.CategoryToBlog.Count</span>

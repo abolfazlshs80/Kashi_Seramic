@@ -10,16 +10,17 @@ namespace Kashi_Seramic.MVC.Services
         ICategoryService repcat;
         ITagService repTag;
         IMenuService repmenu;
+        private IFilterValueProductService _filterValueProductService;
         ISettingService repsSettingService;
-        public SiteMap(IBlogService _blogService,IProductService productService, ICategoryService _repcat, ITagService _repTag, IMenuService _repmenu, ISettingService _repsSettingService)
+        public SiteMap(IBlogService _blogService,IProductService productService, ICategoryService _repcat, ITagService _repTag, IMenuService _repmenu, ISettingService _repsSettingService, IFilterValueProductService filterValueProductService)
         {
-            repblog=_blogService;
+            repblog = _blogService;
             repproduct = productService;
             repTag = _repTag;
             repcat = _repcat;
             repmenu = _repmenu;
             repsSettingService = _repsSettingService;
-
+            _filterValueProductService = filterValueProductService;
         }
 
         public async Task< bool> CreateSiteMap()
@@ -96,7 +97,23 @@ namespace Kashi_Seramic.MVC.Services
                         ChangeFrequency = SitemapLocation.eChangeFrequency.weekly,
                         Priority = 0.8,
                         Url =
-                            $"https://www.omolbininsafaribeauty.com/Blog/{item.Id}/{item.ShortTitle.SetForUrl()}",
+                            $"{PathBase}/Blog/{item.Id}/{item.ShortTitle.SetForUrl()}",
+                        Images = null //optional
+                    });
+                }
+
+
+            }
+            foreach (var item in await repblog.GetBlogs())
+            {
+                if (item.Status)
+                {
+                    sitemap.Add(new SitemapLocation
+                    {
+                        ChangeFrequency = SitemapLocation.eChangeFrequency.weekly,
+                        Priority = 0.8,
+                        Url =
+                            $"{PathBase}/Blog/{item.Id}/{item.ShortTitle.SetForUrl()}",
                         Images = null //optional
                     });
                 }
@@ -113,7 +130,7 @@ namespace Kashi_Seramic.MVC.Services
                         ChangeFrequency = SitemapLocation.eChangeFrequency.weekly,
                         Priority = 0.8,
                         Url =
-                            $"https://www.omolbininsafaribeauty.com/Blog/{item.Id}/{item.Title.SetForUrl()}",
+                            $"{PathBase}/Product/{item.Id}/{item.Title.SetForUrl()}",
                         Images = null //optional
                     });
                 }
@@ -130,11 +147,27 @@ namespace Kashi_Seramic.MVC.Services
                         ChangeFrequency = SitemapLocation.eChangeFrequency.weekly,
                         Priority = 0.8,
                         Url =
-                            $"https://www.omolbininsafaribeauty.com/Category/{item.Id}/{item.Name.SetForUrl()}",
+                            $"{PathBase}/Category/{item.Id}/{item.Name.SetForUrl()}",
                         Images = null //optional
                     });
                 }
             
+
+            }
+            foreach (var item in await _filterValueProductService.GetFilterValueProducts())
+            {
+                if (item.Status)
+                {
+                    sitemap.Add(new SitemapLocation
+                    {
+                        ChangeFrequency = SitemapLocation.eChangeFrequency.weekly,
+                        Priority = 0.8,
+                        Url =
+                            $"{PathBase}/Filter/{item.Value.SetForUrl()}",
+                        Images = null //optional
+                    });
+                }
+
 
             }
             foreach (var item in await repTag.GetTags())
@@ -146,7 +179,7 @@ namespace Kashi_Seramic.MVC.Services
                         ChangeFrequency = SitemapLocation.eChangeFrequency.weekly,
                         Priority = 0.8,
                         Url =
-                            $"https://www.omolbininsafaribeauty.com/Category/{item.Id}/{item.Name.SetForUrl()}",
+                            $"{PathBase}/Tag/{item.Id}/{item.Name.SetForUrl()}",
                         Images = null //optional
                     });
                 }
@@ -162,7 +195,7 @@ namespace Kashi_Seramic.MVC.Services
                         ChangeFrequency = SitemapLocation.eChangeFrequency.weekly,
                         Priority = 0.8,
                         Url =
-                            $"https://www.omolbininsafaribeauty.com/Category/{item.Id}/{item.Title.SetForUrl()}",
+                            $"{PathBase}/{item.Href}",
                         Images = null //optional
                     });
                 }
@@ -174,5 +207,7 @@ namespace Kashi_Seramic.MVC.Services
         }
 
     }
+
+
 }
 

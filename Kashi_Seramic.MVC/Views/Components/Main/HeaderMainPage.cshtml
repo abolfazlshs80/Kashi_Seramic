@@ -7,12 +7,12 @@
             <ul class="list-style">
                 @foreach (var slide in Model)
                 {
-                    <li><a href="/"><img src="@slide.PathImage.SetForSliderUrl()" alt="@slide.Title"></a></li>
+                    <li><a href="/"><img src="@slide.PathImage.SetForSliderUrl()" alt="@slide.Title" title="@slide.Title" width="50" height="50" rel="follow index"></a></li>
                 }
 
 
             </ul>
-            <span>29k بررسی مثبت</span>
+            <span> بررسی مثبت</span>
         </div>
         <div class="hero-slider-one owl-carousel">
             @{

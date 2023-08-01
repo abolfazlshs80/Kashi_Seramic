@@ -18,6 +18,7 @@ namespace Kashi_Seramic.MVC.Controllers
             if (blog == null)
                 return NotFound();
             //TODO Insert Contact Info
+            blog.Type = "Product";
             ViewBag.StatusLocationBarOne = false;
             ViewBag.StatusLocationBar = true;
             ViewBag.LocationBarOne = "محصول ها";

@@ -26,10 +26,10 @@
         script.setAttribute('type', 'application/ld+json');
         var model = @Json.Serialize(Model);
             script.textContent = '{"@@context": "https://schema.org",  "@@type": "FAQPage", "mainEntity": [ ';
-        for (var i = 0; i < model.length; i++) {
+        for (var i = 0; i < model["$values"].length; i++) {
             if (i != 0) { script.textContent =script.textContent + ','; }
-
-            script.textContent = script.textContent + '{"@@type": "Question", "name": "' + model[i]["text"] + '", "acceptedAnswer": {"@@type": "Answer", "text": "'+model[i]["replayText"] + '" }}';
+            
+            script.textContent = script.textContent + '{"@@type": "Question", "name": "' + model["$values"][i]["text"] + '", "acceptedAnswer": {"@@type": "Answer", "text": "'+model["$values"][i]["replayText"] + '" }}';
         }
         script.textContent = script.textContent + ']}';
         document.head.appendChild(script);
